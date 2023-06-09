@@ -60,10 +60,15 @@ public class GameManager : MonoBehaviour
     // Overwriting the delegate method of SceneManager 
     public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == GAME_PLAY)
+        if (scene.name == GAME_PLAY)
         {
-           
+
             Instantiate(characters[characterIndex]);
         }
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 } // Class 
