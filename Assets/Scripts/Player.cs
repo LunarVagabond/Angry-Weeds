@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class Player : MonoBehaviour
 
     private float movementX;
 
-
-
     [SerializeField]
     private Rigidbody2D myBody;
 
@@ -24,7 +23,6 @@ public class Player : MonoBehaviour
 
     private string WALK_ANIMATION = "Walk";
     private string GROUND_TAG = "Ground";
-    private string MONSTER_TAG = "Enemy";
 
     private bool isGrounded;
 
@@ -40,10 +38,7 @@ public class Player : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    void Start(){}
 
     // Update is called once per frame
     void Update()
@@ -67,14 +62,14 @@ public class Player : MonoBehaviour
 
     void animatePlayer()
     {
-        if(movementX > 0 ) // Going to the right side
+        if (movementX > 0) // Going to the right side
         {
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = false; // Going to the right side
         }
-        else if(movementX < 0) // Going to the left 
+        else if (movementX < 0) // Going to the left 
         {
- 
+
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = true; // Going to the left size 
         }
@@ -101,21 +96,6 @@ public class Player : MonoBehaviour
         // If player and the ground collides 
         if (collision.gameObject.CompareTag(GROUND_TAG))
             isGrounded = true; // The player is on the ground
-        
-
-
-        // If player and enemy collides 
-        if (collision.gameObject.CompareTag(MONSTER_TAG))
-             Destroy(gameObject);
-            // gameObject = this aka this Player
-       
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Check if the monster and player collide
-        if (collision.CompareTag(MONSTER_TAG))
-               Destroy(gameObject);
-        
-    }
 }
