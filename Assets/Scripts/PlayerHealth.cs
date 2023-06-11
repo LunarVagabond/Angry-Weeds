@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     private bool isInvulnerable = false;
     private string MONSTER_TAG = "Enemy";
-
+    [SerializeField] private AudioSource damageTakenSFX;
     
     public int health;
     public int maxHealth = 3;
@@ -35,10 +35,13 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("deal damage called");
             health -= damage;
+            damageTakenSFX.Play();
             isInvulnerable = true;
             
             if (health <= 0)
             {
+                // TODO: Add a death sound here once we figure out how to destroy character
+                // Currently the character can't be deleted due to special prefab clone properties (I think)
                 FindObjectOfType<GameManager>().GameOver();
             }
             else
