@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterSpawner : MonoBehaviour
 {
+    public static int monsterCount = 0;
+
     [SerializeField]
     private GameObject[] monsterReference;
 
@@ -15,6 +18,9 @@ public class MonsterSpawner : MonoBehaviour
     private int randomIndex;
     private int randomSide;
 
+    [SerializeField]
+    private Text numOfMonsters;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,14 +29,16 @@ public class MonsterSpawner : MonoBehaviour
 
     IEnumerator SpawnMonsters() {
 
-        while (true)
-        {
+        while(true) { //always true while loop
             yield return new WaitForSeconds(Random.Range(3, 8));
             // Wait between a range of 1 and 5 seconds 
 
             randomIndex = Random.Range(0, monsterReference.Length);
             //  A random number between 0 and the Monster reference range
             // minus 1. So between 0,1,and 2.
+            
+            //Keeps track of how many monsters have been spawned
+            numOfMonsters.text = "Monsters to kill: " + MonsterSpawner.monsterCount.ToString();
 
             randomSide = Random.Range(0, 2); // 0, 1
 
@@ -57,6 +65,7 @@ public class MonsterSpawner : MonoBehaviour
                 spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 1f);
                 // Flip the enemy to face the left direction
             }
+        MonsterSpawner.monsterCount++;
         } // End of While Loop
     }
 
