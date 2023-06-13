@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteR;
 
-    private string WALK_ANIMATION = "Walk";
+    private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
     private string GROUND_TAG = "Ground";
 
     private bool isGrounded;
@@ -65,13 +65,13 @@ public class Player : MonoBehaviour
         if (movementX > 0) // Going to the right side
         {
             anim.SetBool(WALK_ANIMATION, true);
-            spriteR.flipX = false; // Going to the right side
+            spriteR.flipX = true; // Going to the right side, VPC 6/13 - have to flip t/f for new sprite
         }
         else if (movementX < 0) // Going to the left 
         {
 
             anim.SetBool(WALK_ANIMATION, true);
-            spriteR.flipX = true; // Going to the left size 
+            spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
         }
         else // The player is not moving 
         {
