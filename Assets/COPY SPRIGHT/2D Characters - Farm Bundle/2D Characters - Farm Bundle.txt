@@ -1,0 +1,12 @@
+The characters of this asset bundle need to be downloaded separately:
+
+https://assetstore.unity.com/packages/2d/characters/2d-character-flower-182844
+https://assetstore.unity.com/packages/2d/characters/2d-character-tree-182845
+https://assetstore.unity.com/packages/2d/characters/2d-character-hillbilly-182804
+https://assetstore.unity.com/packages/2d/characters/2d-character-farmer-182792
+https://assetstore.unity.com/packages/2d/characters/2d-character-dog-182817
+https://assetstore.unity.com/packages/2d/characters/2d-character-baker-182826
+https://assetstore.unity.com/packages/2d/characters/2d-character-plant-182843
+https://assetstore.unity.com/packages/2d/characters/2d-character-viking-182805
+https://assetstore.unity.com/packages/2d/characters/2d-character-cat-182816
+https://assetstore.unity.com/packages/2d/characters/2d-character-bunny-182657
