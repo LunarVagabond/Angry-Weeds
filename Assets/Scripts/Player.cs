@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private float jumpForce = 11f;
 
     private float movementX;
+    private float movementY;
 
     [SerializeField]
     private Rigidbody2D myBody;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     private string GROUND_TAG = "Ground";
 
     private bool isGrounded;
+    private const float rightSideOfScreen = 98.47478f;
+    private const float leftSideOfScreen  = -98.47478f;
 
 
     // ******* Global Variables *******
@@ -54,9 +57,27 @@ public class Player : MonoBehaviour
         movementX = Input.GetAxisRaw("Horizontal");
         // Gets A and D keys or left and right arrow keys
 
+        movementY = Input.GetAxisRaw("Vertical");
+
         //Transform is built in for the game object 
 
-        transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+
+        if(transform.position.x < -99)
+
+        {
+            transform.position = new Vector3(rightSideOfScreen, transform.position.y, 0f);
+
+        }
+        else if(transform.position.x > 99)
+        {
+            transform.position = new Vector3(leftSideOfScreen, transform.position.y, 0f);
+
+        }
+        else
+        {
+            transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+
+        }
 
     }
 

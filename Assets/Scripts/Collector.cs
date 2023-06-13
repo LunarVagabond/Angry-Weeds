@@ -6,21 +6,12 @@ public class Collector : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") || collision.CompareTag("Player"))
+        if (collision.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
             MonsterSpawner.monsterCount--;
         } 
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
-
 
     // Start is called before the first frame update
     void Start()

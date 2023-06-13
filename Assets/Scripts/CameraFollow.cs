@@ -35,14 +35,20 @@ public class CameraFollow : MonoBehaviour
 
         if (tempPos.x < minxX)
         {
-            tempPos.x = minxX;
+
+
+            // If the player goes off to the left side of the screen
+            // The player should traverse to the right side of the screen
+           tempPos.x = minxX;
+
+            //tempPos.x = maxX;
         }
 
         else if(tempPos.x > maxX)
         {
             tempPos.x = maxX;
         }
-
+         
         transform.position = tempPos;
 
     }

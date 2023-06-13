@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public static int monsterCount = 0;
+    public static int monsterCount = 1;
 
     [SerializeField]
     private GameObject[] monsterReference;
@@ -36,7 +36,6 @@ public class MonsterSpawner : MonoBehaviour
             randomIndex = Random.Range(0, monsterReference.Length);
             //  A random number between 0 and the Monster reference range
             // minus 1. So between 0,1,and 2.
-            
             //Keeps track of how many monsters have been spawned
             numOfMonsters.text = "Monsters to kill: " + MonsterSpawner.monsterCount.ToString();
 
