@@ -1,0 +1,43 @@
+	
+--------------Bee 2D---------------------------
+
+This package contains 2D animated Bee's, that will perfectly fit in a side scrolling platformer games and any other type of games.All animations are skeleton animations(Has no spritesheets).You can use the package commercially and non-commercially
+
+Technical Details:-
+		
+		- Prefabs : 5
+		- Animations : 6 (Idle, Run/Fly, attack_1, attack_2, hit, death)
+		- Animation type : Skeleton animation
+		- Design type : Cartoony, 2D
+		- Characters : Bee, Queen Bee, Kid Bee, Queen Kid, MegaBee
+		- File format : PNG
+		- Sprite resolution :  4737 x 4268 (Sprites Packed image), 700 x 500 (average size of the individual parts)
+			
+			
+Features:-
+	- Fully customizable (Adjust size, position of the body part's, add new parts, change color and sprite.etc)
+	- Different unique Bee's
+	- Cute and funny character
+	- Smooth loop animations
+	- Easy to creat new animation's
+	- Easy to adjust speed of the default animation's using unity editor
+	- Prefabs included
+	- Rigidbody, 2D Box colliders attached
+	- Drag and drop and use
+	- Well arranged folders
+	- High quality images
+	- Mobile supported
+	- Demo scenes & Guides included
+	
+How to use:-
+	
+	Simply drag and drop any prefab from(Bee_2D > Prefabs) folder
+	to your scene and use it.
+
+..................................................................................
+
+About Me : "SR Studios Kerala", Indie Game developer & 3D-2D Genaralist Artist from Alappuzha, Kerala, India
+
+Contact : srstudioskerala@gmail.com
+
+................Thank you for downloading this package................................
