@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private float jumpForce = 11f;
 
     private float movementX;
+    private float movementY;
 
     [SerializeField]
     private Rigidbody2D myBody;
@@ -21,10 +22,13 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteR;
 
-    private string WALK_ANIMATION = "Walk";
+    private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
+    private string JUMP_ANIMATION = "isJumping"; 
     private string GROUND_TAG = "Ground";
 
     private bool isGrounded;
+    private const float rightSideOfScreen = 98.47478f;
+    private const float leftSideOfScreen  = -98.47478f;
 
 
     // ******* Global Variables *******
@@ -54,9 +58,27 @@ public class Player : MonoBehaviour
         movementX = Input.GetAxisRaw("Horizontal");
         // Gets A and D keys or left and right arrow keys
 
+        movementY = Input.GetAxisRaw("Vertical");
+
         //Transform is built in for the game object 
 
-        transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+
+        if(transform.position.x < -99)
+
+        {
+            transform.position = new Vector3(rightSideOfScreen, transform.position.y, 0f);
+
+        }
+        else if(transform.position.x > 99)
+        {
+            transform.position = new Vector3(leftSideOfScreen, transform.position.y, 0f);
+
+        }
+        else
+        {
+            transform.position += new Vector3(movementX, 0f, 0f) * Time.deltaTime * moveForce;
+
+        }
 
     }
 
@@ -65,13 +87,13 @@ public class Player : MonoBehaviour
         if (movementX > 0) // Going to the right side
         {
             anim.SetBool(WALK_ANIMATION, true);
-            spriteR.flipX = false; // Going to the right side
+            spriteR.flipX = true; // Going to the right side, VPC 6/13 - have to flip t/f for new sprite
         }
         else if (movementX < 0) // Going to the left 
         {
 
             anim.SetBool(WALK_ANIMATION, true);
-            spriteR.flipX = true; // Going to the left size 
+            spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
         }
         else // The player is not moving 
         {
@@ -87,6 +109,7 @@ public class Player : MonoBehaviour
             isGrounded = false; // Allows us to not jump two times
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
+            anim.SetBool(JUMP_ANIMATION, true); // VPC 6/14 - adding the setting of jump animation for characters
         }
     }
 
@@ -95,7 +118,11 @@ public class Player : MonoBehaviour
     {
         // If player and the ground collides 
         if (collision.gameObject.CompareTag(GROUND_TAG))
+        {
             isGrounded = true; // The player is on the ground
+
+            anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
+        }
     }
 
 }
