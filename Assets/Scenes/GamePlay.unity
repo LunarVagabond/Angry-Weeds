@@ -3885,7 +3885,7 @@ MonoBehaviour:
   monsterReference:
   - {fileID: 6516133068787022649, guid: de1c998185d82c74387ef1e320aa24a4, type: 3}
   - {fileID: 4789565998399729135, guid: b54cb3b3d365a2a4b97286822bbefd97, type: 3}
-  - {fileID: 4425127022697756380, guid: 9498dade5a9b74c519823e7874e3d506, type: 3}
+  - {fileID: 6997816322180704471, guid: 266a6f63847baf74f8994786127146d4, type: 3}
   leftPos: {fileID: 1791701158}
   rightPos: {fileID: 206489468}
   numOfMonsters: {fileID: 1106319498}

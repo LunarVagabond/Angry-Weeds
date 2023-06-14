@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class MonsterSpawner : MonoBehaviour
 
     private int randomIndex;
     private int randomSide;
+
+    private float x_scale = 0.0f;
+    private float y_scale = 0.0f;
+    private float z_scale = 0.0f;
 
     [SerializeField]
     private Text numOfMonsters;
@@ -41,8 +46,14 @@ public class MonsterSpawner : MonoBehaviour
 
             randomSide = Random.Range(0, 2); // 0, 1
 
-            spawnedMonster = Instantiate(monsterReference[randomIndex]);
             // Spawns a copy the object determined by the index 0,1,2.
+            spawnedMonster = Instantiate(monsterReference[randomIndex]);
+
+            // VPC 6/14 - The new sprites have different default scales between enemy types. Getting them here after
+            // creation so that the Vector3 operation below doesn't set them back to 1.0f
+            x_scale = spawnedMonster.transform.localScale.x;
+            y_scale = spawnedMonster.transform.localScale.y;
+            z_scale = spawnedMonster.transform.localScale.z;
 
             if (randomSide == 0) // Left Side 
             {
@@ -61,7 +72,8 @@ public class MonsterSpawner : MonoBehaviour
                 // We spawn a random negative number between -4 and -10 so the enemy from
                 // the right will travel to the left side of the screen.
 
-                spawnedMonster.transform.localScale = new Vector3(-1f, 1f, 1f);
+                x_scale *= -1;
+                spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
                 // Flip the enemy to face the left direction
             }
         MonsterSpawner.monsterCount++;
