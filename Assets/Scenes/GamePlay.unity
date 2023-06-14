@@ -3883,8 +3883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterReference:
-  - {fileID: 6516133068787022649, guid: 47379c3f51eb44399814a89fd0d0f3f3, type: 3}
-  - {fileID: 4789565998399729135, guid: ddf914d9186ba48fbaa0ec6af20f9e9c, type: 3}
+  - {fileID: 6516133068787022649, guid: de1c998185d82c74387ef1e320aa24a4, type: 3}
+  - {fileID: 4789565998399729135, guid: b54cb3b3d365a2a4b97286822bbefd97, type: 3}
   - {fileID: 4425127022697756380, guid: 9498dade5a9b74c519823e7874e3d506, type: 3}
   leftPos: {fileID: 1791701158}
   rightPos: {fileID: 206489468}
