@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteR;
 
     private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
+    private string JUMP_ANIMATION = "isJumping"; 
     private string GROUND_TAG = "Ground";
 
     private bool isGrounded;
@@ -108,6 +109,7 @@ public class Player : MonoBehaviour
             isGrounded = false; // Allows us to not jump two times
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
+            anim.SetBool(JUMP_ANIMATION, true); // VPC 6/14 - adding the setting of jump animation for characters
         }
     }
 
@@ -116,7 +118,11 @@ public class Player : MonoBehaviour
     {
         // If player and the ground collides 
         if (collision.gameObject.CompareTag(GROUND_TAG))
+        {
             isGrounded = true; // The player is on the ground
+
+            anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
+        }
     }
 
 }
