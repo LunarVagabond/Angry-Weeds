@@ -77,3 +77,4 @@ ProjectSettings/ProjectVersion.txt
 .vscode
 
 builds/*
+Assets/importedAssets/*
