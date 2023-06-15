@@ -76,3 +76,4 @@ ProjectSettings/ProjectVersion.txt
 
 .vscode
 
+builds/*
