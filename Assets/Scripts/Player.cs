@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private AudioSource landingSFX;
+    [SerializeField] private AudioSource runningSFX;
 
     private float movementX;
     private float movementY;
@@ -35,8 +36,10 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private const float rightSideOfScreen = 98.47478f;
     private const float leftSideOfScreen  = -98.47478f;
-
+    [SerializeField] private AudioSource pickUpSFX;
     public int ammoCount = 0;
+
+    
 
 
     // ******* Global Variables *******
@@ -94,17 +97,21 @@ public class Player : MonoBehaviour
     {
         if (movementX > 0) // Going to the right side
         {
+            if (!runningSFX.isPlaying && isGrounded)
+                runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = true; // Going to the right side, VPC 6/13 - have to flip t/f for new sprite
         }
         else if (movementX < 0) // Going to the left 
         {
-
+            if (!runningSFX.isPlaying && isGrounded)
+                runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
         }
         else // The player is not moving 
         {
+            runningSFX.Pause();
             anim.SetBool(WALK_ANIMATION, false);
 
         }
@@ -115,6 +122,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             isGrounded = false; // Allows us to not jump two times
+            runningSFX.Pause();
             jumpSFX.Play();
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
@@ -132,6 +140,11 @@ public class Player : MonoBehaviour
             isGrounded = true; // The player is on the ground
 
             anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
+        }
+        else if(collision.gameObject.tag == "Ammo") {
+            pickUpSFX.Play();
+            Destroy(collision.gameObject);
+            ammoCount += Random.Range(1, 5);
         }
     }
 
