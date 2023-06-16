@@ -21,7 +21,7 @@ public class AmmoSpawner : MonoBehaviour
     IEnumerator AmmoDrop() {
         while(true){
             xPos = Random.Range(-80, 80);
-            int ammoToSpawn = Random.Range(1,ammoTypes.Length);
+            int ammoToSpawn = Random.Range(0,ammoTypes.Length - 1);
             GameObject n = Instantiate(ammoTypes[ammoToSpawn], new Vector2(xPos, yPos), Quaternion.identity);
             n.transform.parent = this.transform;
             yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime + 1)); // max is not included so we add one to include the actual target
