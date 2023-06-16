@@ -13,7 +13,7 @@ public class AmmoSpawner : MonoBehaviour
     public int ammoCount; // probably used later to clean up the scene
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         StartCoroutine(AmmoDrop());
     }
