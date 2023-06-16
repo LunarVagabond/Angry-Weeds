@@ -5,7 +5,7 @@ using UnityEngine;
 public class fallingAmmo : MonoBehaviour
 {
     private float fallDelay = 1f;
-    private float destroyDelay; // again used for scene cleanup later
+    [SerializeField] private float destroyDelay =  20f; // again used for scene cleanup later
 
     [SerializeField] Player player;
 
@@ -27,6 +27,6 @@ public class fallingAmmo : MonoBehaviour
     {
         yield return new WaitForSeconds(fallDelay);
         ammo.bodyType = RigidbodyType2D.Dynamic;
-        // Destroy(gameObject, destroyDelay);
+        Destroy(gameObject, destroyDelay);
     }
 }
