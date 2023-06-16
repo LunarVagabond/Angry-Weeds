@@ -235,6 +235,7 @@ MonoBehaviour:
   moveForce: 10
   jumpForce: 11
   myBody: {fileID: 0}
+  ammoCount: 0
 --- !u!114 &3977109007406934265
 MonoBehaviour:
   m_ObjectHideFlags: 0

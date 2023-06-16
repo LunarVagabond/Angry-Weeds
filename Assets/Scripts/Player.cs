@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private const float rightSideOfScreen = 98.47478f;
     private const float leftSideOfScreen  = -98.47478f;
 
+    public int ammoCount = 0;
+
 
     // ******* Global Variables *******
 
