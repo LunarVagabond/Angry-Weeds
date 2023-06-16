@@ -17,7 +17,6 @@ public class fallingAmmo : MonoBehaviour
     public IEnumerator Fall()
     {
         yield return new WaitForSeconds(fallDelay);
-        ammo.bodyType = RigidbodyType2D.Dynamic;
     }
 
     

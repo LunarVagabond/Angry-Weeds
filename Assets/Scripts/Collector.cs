@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Collector : MonoBehaviour
 {
+    [SerializeField] MonsterSpawner spawner;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
-            MonsterSpawner.monsterCount--;
+            spawner.spawnedEnemies.Remove(collision.gameObject);
+
         } 
     }
 

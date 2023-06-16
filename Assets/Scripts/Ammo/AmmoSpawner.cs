@@ -5,7 +5,7 @@ using UnityEngine;
 public class AmmoSpawner : MonoBehaviour
 {
 
-    public GameObject ammo;
+    public GameObject[] ammoTypes; // ammo types
     public int xPos;
     public int yPos = 20;
     public float minSpawnTime;
@@ -21,7 +21,8 @@ public class AmmoSpawner : MonoBehaviour
     IEnumerator AmmoDrop() {
         while(true){
             xPos = Random.Range(-80, 80);
-            GameObject n = Instantiate(ammo, new Vector2(xPos, yPos), Quaternion.identity);
+            int ammoToSpawn = Random.Range(0,ammoTypes.Length - 1);
+            GameObject n = Instantiate(ammoTypes[ammoToSpawn], new Vector2(xPos, yPos), Quaternion.identity);
             n.transform.parent = this.transform;
             yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime + 1)); // max is not included so we add one to include the actual target
         }

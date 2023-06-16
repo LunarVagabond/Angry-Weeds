@@ -6,8 +6,6 @@ using UnityEngine.UIElements;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public static int monsterCount = 1;
-
     [SerializeField]
     private GameObject[] monsterReference;
 
@@ -15,6 +13,7 @@ public class MonsterSpawner : MonoBehaviour
     private Transform leftPos, rightPos;
 
     private GameObject spawnedMonster;
+    public List<GameObject> spawnedEnemies;
 
     private int randomIndex;
     private int randomSide;
@@ -33,7 +32,7 @@ public class MonsterSpawner : MonoBehaviour
     }
 
     IEnumerator SpawnMonsters() {
-
+        spawnedEnemies.Clear();
         while(true) { //always true while loop
             yield return new WaitForSeconds(Random.Range(3, 8));
             // Wait between a range of 1 and 5 seconds 
@@ -42,12 +41,15 @@ public class MonsterSpawner : MonoBehaviour
             //  A random number between 0 and the Monster reference range
             // minus 1. So between 0,1,and 2.
             //Keeps track of how many monsters have been spawned
-            numOfMonsters.text = "Monsters to kill: " + MonsterSpawner.monsterCount.ToString();
+
 
             randomSide = Random.Range(0, 2); // 0, 1
 
             // Spawns a copy the object determined by the index 0,1,2.
             spawnedMonster = Instantiate(monsterReference[randomIndex]);
+            spawnedEnemies.Add(spawnedMonster);
+            spawnedMonster.transform.parent = gameObject.transform; // dump spawned monsters under the spawner
+            numOfMonsters.text = "Monsters to kill: " + spawnedEnemies.Count;
 
             // VPC 6/14 - The new sprites have different default scales between enemy types. Getting them here after
             // creation so that the Vector3 operation below doesn't set them back to 1.0f
@@ -76,7 +78,6 @@ public class MonsterSpawner : MonoBehaviour
                 spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
                 // Flip the enemy to face the left direction
             }
-        MonsterSpawner.monsterCount++;
         } // End of While Loop
     }
 
