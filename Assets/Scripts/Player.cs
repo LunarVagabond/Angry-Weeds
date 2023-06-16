@@ -13,6 +13,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jumpForce = 11f;
 
+    [SerializeField]
+    private AudioSource jumpSFX;
+
+    [SerializeField]
+    private AudioSource landingSFX;
+
     private float movementX;
     private float movementY;
 
@@ -29,6 +35,8 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private const float rightSideOfScreen = 98.47478f;
     private const float leftSideOfScreen  = -98.47478f;
+
+    public int ammoCount = 0;
 
 
     // ******* Global Variables *******
@@ -107,6 +115,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             isGrounded = false; // Allows us to not jump two times
+            jumpSFX.Play();
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
             anim.SetBool(JUMP_ANIMATION, true); // VPC 6/14 - adding the setting of jump animation for characters
@@ -119,6 +128,7 @@ public class Player : MonoBehaviour
         // If player and the ground collides 
         if (collision.gameObject.CompareTag(GROUND_TAG))
         {
+            if (!isGrounded) landingSFX.Play(); // need the if to stop constant collision boops
             isGrounded = true; // The player is on the ground
 
             anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
