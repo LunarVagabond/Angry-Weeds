@@ -239,6 +239,7 @@ MonoBehaviour:
   jumpSFX: {fileID: -1165916273995877784}
   landingSFX: {fileID: -2128930963831378141}
   myBody: {fileID: 0}
+  ammoCount: 0
 --- !u!114 &3977109007406934265
 MonoBehaviour:
   m_ObjectHideFlags: 0
