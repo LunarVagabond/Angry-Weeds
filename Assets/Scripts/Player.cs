@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
 
     private Animator anim;
     private SpriteRenderer spriteR;
-    private SpriteRenderer spriteGun;
+
+    [SerializeField] private SpriteRenderer spriteGun;
 
     private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
     private string JUMP_ANIMATION = "isJumping"; 
@@ -52,7 +53,10 @@ public class Player : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteR = GetComponent<SpriteRenderer>();
-        spriteGun = this.GetComponentInChildren<SpriteRenderer>();
+
+        //VPC 6/18 - Not sure why this doesn't work. I tried putting it in the OnCollisionEnter2D function below
+        // so that it would only try to get it when active, but that doesn't seem to make a difference
+        spriteGun = GetComponentInChildren<SpriteRenderer>();
 
     }
 
@@ -65,6 +69,7 @@ public class Player : MonoBehaviour
         PlayerMoveKeyBoard();
         animatePlayer();
         PlayerJump();
+      //  renderPGun();
     }
 
 
@@ -160,5 +165,14 @@ public class Player : MonoBehaviour
             anim.SetBool(GUN_ANIMATION, true);
         }
     }
-
+/*
+    private void renderPGun()
+    {
+        if (hasPGUN)
+        {
+            spriteGun.enabled =true;
+        }
+        else spriteGun.enabled = false;
+    }
+*/
 }
