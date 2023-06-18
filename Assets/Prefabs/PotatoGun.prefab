@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2922705219400706940}
   m_Layer: 6
   m_Name: PotatoGun
-  m_TagString: Untagged
+  m_TagString: PotatoGun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1739912314899262264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 1979359105
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7f1f138616f8f4e4d99248c8a2001e68, type: 3}
+  m_Sprite: {fileID: 8333481726314500824, guid: e64f24e19a9045c7a87419a44d3d603f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,8 +146,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.09953886, y: -0.15484005}
-  m_Size: {x: 8.233281, y: 8.233281}
+  m_Offset: {x: -0.29934454, y: 0.47619343}
+  m_Size: {x: 1.3193026, y: 1.4307611}
   m_Direction: 0
 --- !u!114 &2922705219400706940
 MonoBehaviour:

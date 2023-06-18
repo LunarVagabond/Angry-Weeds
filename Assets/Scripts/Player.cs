@@ -28,10 +28,12 @@ public class Player : MonoBehaviour
 
     private Animator anim;
     private SpriteRenderer spriteR;
+    private SpriteRenderer spriteGun;
 
     private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
     private string JUMP_ANIMATION = "isJumping"; 
     private string GROUND_TAG = "Ground";
+    private string GUN_ANIMATION = "hasPGun";
 
     private bool isGrounded;
     private const float rightSideOfScreen = 98.47478f;
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource pickUpSFX;
     public int ammoCount = 0;
 
-    
+    [SerializeField]  private bool hasPGUN = false;
 
 
     // ******* Global Variables *******
@@ -50,6 +52,8 @@ public class Player : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteR = GetComponent<SpriteRenderer>();
+        spriteGun = this.GetComponentInChildren<SpriteRenderer>();
+
     }
 
     // Start is called before the first frame update
@@ -101,6 +105,7 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = true; // Going to the right side, VPC 6/13 - have to flip t/f for new sprite
+            spriteGun.flipX = true;
         }
         else if (movementX < 0) // Going to the left 
         {
@@ -108,6 +113,7 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
+            spriteGun.flipX = false;
         }
         else // The player is not moving 
         {
@@ -141,10 +147,17 @@ public class Player : MonoBehaviour
 
             anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
         }
-        else if(collision.gameObject.tag == "Ammo") {
+        else if (collision.gameObject.tag == "Ammo")
+        {
             pickUpSFX.Play();
             Destroy(collision.gameObject);
             ammoCount += Random.Range(1, 5);
+        }
+        else if (collision.gameObject.tag == "PotatoGun") {
+            pickUpSFX.Play();
+            Destroy(collision.gameObject);
+            hasPGUN = true;
+            anim.SetBool(GUN_ANIMATION, true);
         }
     }
 
