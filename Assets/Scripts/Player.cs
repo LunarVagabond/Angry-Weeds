@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     public int ammoCount = 0;
 
     [SerializeField]  private bool hasPGUN = false;
+    private bool jumpWithGun = false;
 
     // ******* Global Variables *******
 
@@ -114,7 +115,15 @@ public class Player : MonoBehaviour
             
             // VPC 6/19 - flipping and re-centering the gun 
             SpriteGun.flipX = true;
-            SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.35f, 0.109f), Quaternion.identity);
+
+            if (anim.GetBool(JUMP_ANIMATION))
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.51f, 0.3f), Quaternion.Euler(0f, 0f, 270f));
+            }
+            else 
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.25f, 0.11f), Quaternion.identity);
+            }
         }
         else if (movementX < 0) // Going to the left 
         {
@@ -125,7 +134,15 @@ public class Player : MonoBehaviour
 
             // VPC 6/19 - flipping and re-centering the gun 
             SpriteGun.flipX = false;
-            SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.234f, 0.109f), Quaternion.identity);
+            
+            if (anim.GetBool(JUMP_ANIMATION))
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.51f, 0.3f), Quaternion.Euler(0f, 0f, 90f));
+            }
+            else
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.25f, 0.11f), Quaternion.identity);
+            }
         }
         else // The player is not moving 
         {
@@ -158,6 +175,16 @@ public class Player : MonoBehaviour
             isGrounded = true; // The player is on the ground
 
             anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
+
+            if (spriteR.flipX)
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.25f, 0.11f), Quaternion.Euler(0f, 0f, 90f));
+            }
+            else
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.25f, 0.11f), Quaternion.Euler(0f, 0f, 270f));
+            }
+            
         }
         else if (collision.gameObject.tag == "Ammo")
         {
