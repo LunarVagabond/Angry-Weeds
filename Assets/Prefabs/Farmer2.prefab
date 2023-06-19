@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 10
-  jumpForce: 11
+  jumpForce: 11.75
   jumpSFX: {fileID: -4612253924252314923}
   landingSFX: {fileID: 5946493494559142886}
   runningSFX: {fileID: -8348994438667237542}
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74947ed7d0318494b9d0ad7fad1ba50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
 --- !u!114 &-3370545463489305327
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -148,4 +148,8 @@ public class Player : MonoBehaviour
         }
     }
 
+    public  bool GetIsGrounded()
+    {
+        return isGrounded;
+    }
 }
