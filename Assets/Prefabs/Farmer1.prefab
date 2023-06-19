@@ -237,13 +237,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 10
-  jumpForce: 11
+  jumpForce: 11.75
   jumpSFX: {fileID: -1165916273995877784}
   landingSFX: {fileID: -2128930963831378141}
   runningSFX: {fileID: -5614123149245746878}
   myBody: {fileID: 0}
-  ammoCount: 0
   pickUpSFX: {fileID: 4552732251039233135}
+  ammoCount: 0
 --- !u!114 &3977109007406934265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74947ed7d0318494b9d0ad7fad1ba50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
 --- !u!114 &2976895224233476488
 MonoBehaviour:
   m_ObjectHideFlags: 0

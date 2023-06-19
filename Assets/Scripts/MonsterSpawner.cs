@@ -11,6 +11,10 @@ public class MonsterSpawner : MonoBehaviour
 
     [SerializeField]
     private Transform leftPos, rightPos;
+    [SerializeField]
+    private Transform leftPos2, rightPos2;
+    [SerializeField]
+    private Transform leftPos3, rightPos3;
 
     private GameObject spawnedMonster;
     public List<GameObject> spawnedEnemies;
