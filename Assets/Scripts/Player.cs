@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer[] PlayerSprites;
     private SpriteRenderer SpriteGun;
 
-    private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
+    private string WALK_ANIMATION = "Walk"; 
     private string JUMP_ANIMATION = "isJumping"; 
     private string GROUND_TAG = "Ground";
     private string GUN_ANIMATION = "hasPGun";
@@ -55,10 +55,10 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteR = GetComponent<SpriteRenderer>();
 
-        //VPC 6/18 - Not sure why this doesn't work. I tried putting it in the OnCollisionEnter2D function below
-        // so that it would only try to get it when active, but that doesn't seem to make a difference
+        //VPC 6/19 - puts all sprite renderers in game object and children, even if inactive (which the gun is to start)
+        // and puts into an array
         PlayerSprites = GetComponentsInChildren<SpriteRenderer>(true);
-        // VPC - This is horrible, but just getting it to see if it can work for now. Maybe fix in future to find it by name
+        // This is horrible, but works for now. Maybe fix in future to find it by name
         SpriteGun = PlayerSprites[1];
     }
 
@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
         PlayerMoveKeyBoard();
         animatePlayer();
         PlayerJump();
-      //  renderPGun();
     }
 
 
@@ -112,6 +111,8 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = true; // Going to the right side, VPC 6/13 - have to flip t/f for new sprite
+            
+            // VPC 6/19 - flipping and re-centering the gun 
             SpriteGun.flipX = true;
             SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.35f, 0.109f), Quaternion.identity);
         }
@@ -121,6 +122,8 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
+
+            // VPC 6/19 - flipping and re-centering the gun 
             SpriteGun.flipX = false;
             SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.234f, 0.109f), Quaternion.identity);
         }
@@ -169,14 +172,4 @@ public class Player : MonoBehaviour
             anim.SetBool(GUN_ANIMATION, true);
         }
     }
-/*
-    private void renderPGun()
-    {
-        if (hasPGUN)
-        {
-            spriteGun.enabled =true;
-        }
-        else spriteGun.enabled = false;
-    }
-*/
 }
