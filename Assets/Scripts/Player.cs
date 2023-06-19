@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,7 +30,8 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteR;
 
-    [SerializeField] private SpriteRenderer spriteGun;
+    [SerializeField] private SpriteRenderer[] PlayerSprites;
+    private SpriteRenderer SpriteGun;
 
     private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
     private string JUMP_ANIMATION = "isJumping"; 
@@ -44,7 +46,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]  private bool hasPGUN = false;
 
-
     // ******* Global Variables *******
 
     private void Awake()
@@ -56,8 +57,9 @@ public class Player : MonoBehaviour
 
         //VPC 6/18 - Not sure why this doesn't work. I tried putting it in the OnCollisionEnter2D function below
         // so that it would only try to get it when active, but that doesn't seem to make a difference
-        spriteGun = GetComponentInChildren<SpriteRenderer>();
-
+        PlayerSprites = GetComponentsInChildren<SpriteRenderer>(true);
+        // VPC - This is horrible, but just getting it to see if it can work for now. Maybe fix in future to find it by name
+        SpriteGun = PlayerSprites[1];
     }
 
     // Start is called before the first frame update
@@ -110,7 +112,8 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = true; // Going to the right side, VPC 6/13 - have to flip t/f for new sprite
-            spriteGun.flipX = true;
+            SpriteGun.flipX = true;
+            SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.35f, 0.109f), Quaternion.identity);
         }
         else if (movementX < 0) // Going to the left 
         {
@@ -118,7 +121,8 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
-            spriteGun.flipX = false;
+            SpriteGun.flipX = false;
+            SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.234f, 0.109f), Quaternion.identity);
         }
         else // The player is not moving 
         {
