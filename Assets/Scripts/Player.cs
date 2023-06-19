@@ -45,7 +45,11 @@ public class Player : MonoBehaviour
     public int ammoCount = 0;
 
     [SerializeField]  private bool hasPGUN = false;
-    private bool jumpWithGun = false;
+
+    private Vector2 rightFace = new Vector2(0.25f, 0.11f),
+                    rightFaceJump = new Vector2(-0.51f, 0.3f),
+                    leftFace = new Vector2(-0.25f, 0.11f),
+                    leftFaceJump = new Vector2(0.51f, 0.3f);
 
     // ******* Global Variables *******
 
@@ -118,11 +122,11 @@ public class Player : MonoBehaviour
 
             if (anim.GetBool(JUMP_ANIMATION))
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.51f, 0.3f), Quaternion.Euler(0f, 0f, 270f));
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFaceJump, Quaternion.Euler(0f, 0f, 270f));
             }
             else 
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.25f, 0.11f), Quaternion.identity);
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFace, Quaternion.identity);
             }
         }
         else if (movementX < 0) // Going to the left 
@@ -137,11 +141,11 @@ public class Player : MonoBehaviour
             
             if (anim.GetBool(JUMP_ANIMATION))
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.51f, 0.3f), Quaternion.Euler(0f, 0f, 90f));
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFaceJump, Quaternion.Euler(0f, 0f, 90f));
             }
             else
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.25f, 0.11f), Quaternion.identity);
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFace, Quaternion.identity);
             }
         }
         else // The player is not moving 
@@ -162,6 +166,14 @@ public class Player : MonoBehaviour
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
             anim.SetBool(JUMP_ANIMATION, true); // VPC 6/14 - adding the setting of jump animation for characters
+            if (spriteR.flipX)
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFaceJump, Quaternion.Euler(0f, 0f, 270f));
+            }
+            else
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFaceJump, Quaternion.Euler(0f, 0f, 90f));
+            }
         }
     }
 
@@ -178,11 +190,11 @@ public class Player : MonoBehaviour
 
             if (spriteR.flipX)
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(-0.25f, 0.11f), Quaternion.Euler(0f, 0f, 90f));
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFace, Quaternion.identity);
             }
             else
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(new Vector2(0.25f, 0.11f), Quaternion.Euler(0f, 0f, 270f));
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFace, Quaternion.identity);
             }
             
         }
