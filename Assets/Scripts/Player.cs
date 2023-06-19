@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    #region Vars
     // ******* Global Variables *******
 
     [SerializeField]
@@ -39,10 +40,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource pickUpSFX;
     public int ammoCount = 0;
 
-    
-
-
     // ******* Global Variables *******
+    #endregion
 
     private void Awake()
     {
@@ -133,8 +132,10 @@ public class Player : MonoBehaviour
     // Checks to see if the player is colliding onto the ground
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         // If player and the ground collides 
-        if (collision.gameObject.CompareTag(GROUND_TAG))
+        if (collision.gameObject.CompareTag(GROUND_TAG) && collision.contacts[0].normal.y >= 1) // for 2D dectcting the collision for 
+                                                                                                //Player means that the contact point will have a Y of 1
         {
             if (!isGrounded) landingSFX.Play(); // need the if to stop constant collision boops
             isGrounded = true; // The player is on the ground
