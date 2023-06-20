@@ -8736,7 +8736,7 @@ MonoBehaviour:
   monsterReference:
   - {fileID: 6516133068787022649, guid: de1c998185d82c74387ef1e320aa24a4, type: 3}
   - {fileID: 4789565998399729135, guid: b54cb3b3d365a2a4b97286822bbefd97, type: 3}
-  - {fileID: 3013453358086319229, guid: 4c3718b690a9f0b4bb26ee44f78c5bfd, type: 3}
+  - {fileID: 3744331417070929950, guid: d1f3735b9a58957419dc9af03fdedcc6, type: 3}
   totalMonstersToSpawn: 10
   totalMonstersText: {fileID: 1106319498}
   leftPos: {fileID: 1791701158}
