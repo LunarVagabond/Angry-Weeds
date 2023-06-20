@@ -33,11 +33,13 @@ public class Player : MonoBehaviour
 
     [SerializeField] private SpriteRenderer[] PlayerSprites;
     private SpriteRenderer SpriteGun;
+    private SpriteRenderer SpriteMuzzleFlash;
 
     private string WALK_ANIMATION = "Walk"; 
     private string JUMP_ANIMATION = "isJumping"; 
     private string GROUND_TAG = "Ground";
     private string GUN_ANIMATION = "hasPGun";
+    private string SHOOT_ANIMATION = "shootGun";
 
     public Transform groundCheck;
     public float groundCheckRadius = 0f;
@@ -51,10 +53,13 @@ public class Player : MonoBehaviour
 
     [SerializeField]  private bool hasPGUN = false;
 
-    private Vector2 rightFace = new Vector2(0.25f, 0.11f),
+    private Vector2 rightFaceGun = new Vector2(0.25f, 0.11f),
+                    rightFaceMuzzle = new Vector2(1.42f, 0.65f),
                     rightFaceJump = new Vector2(-0.51f, 0.3f),
-                    leftFace = new Vector2(-0.25f, 0.11f),
+                    leftFaceGun = new Vector2(-0.25f, 0.11f),
+                    leftFaceMuzzle = new Vector2(-1.42f,0.65f),
                     leftFaceJump = new Vector2(0.51f, 0.3f);
+                
 
     // ******* Global Variables *******
     #endregion
@@ -71,6 +76,7 @@ public class Player : MonoBehaviour
         PlayerSprites = GetComponentsInChildren<SpriteRenderer>(true);
         // This is horrible, but works for now. Maybe fix in future to find it by name
         SpriteGun = PlayerSprites[1];
+        SpriteMuzzleFlash = PlayerSprites[2];
     }
 
     // Start is called before the first frame update
@@ -82,6 +88,7 @@ public class Player : MonoBehaviour
         PlayerMoveKeyBoard();
         animatePlayer();
         PlayerJump();
+        PlayerShoot();
     }
 
 
@@ -125,6 +132,7 @@ public class Player : MonoBehaviour
             
             // VPC 6/19 - flipping and re-centering the gun 
             SpriteGun.flipX = true;
+            SpriteMuzzleFlash.flipX = true; 
 
             if (anim.GetBool(JUMP_ANIMATION))
             {
@@ -132,7 +140,8 @@ public class Player : MonoBehaviour
             }
             else 
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(rightFace, Quaternion.identity);
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFaceGun, Quaternion.identity);
+                SpriteMuzzleFlash.transform.SetLocalPositionAndRotation(rightFaceMuzzle, Quaternion.identity);
             }
         }
         else if (movementX < 0) // Going to the left 
@@ -141,7 +150,7 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
-
+            SpriteMuzzleFlash.flipX = false;
             // VPC 6/19 - flipping and re-centering the gun 
             SpriteGun.flipX = false;
             
@@ -151,7 +160,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(leftFace, Quaternion.identity);
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFaceGun, Quaternion.identity);
+                SpriteMuzzleFlash.transform.SetLocalPositionAndRotation(leftFaceMuzzle, Quaternion.identity);
             }
         }
         else // The player is not moving 
@@ -195,11 +205,11 @@ public class Player : MonoBehaviour
 
             if (spriteR.flipX)
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(rightFace, Quaternion.identity);
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFaceGun, Quaternion.identity);
             }
             else
             {
-                SpriteGun.transform.SetLocalPositionAndRotation(leftFace, Quaternion.identity);
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFaceGun, Quaternion.identity);
             }
             
         }
@@ -215,5 +225,25 @@ public class Player : MonoBehaviour
             hasPGUN = true;
             anim.SetBool(GUN_ANIMATION, true);
         }
+    }
+    
+    // VPC 6/20 - All functions related to shooting the gun and instantiating projectiles
+    // eventually we can add the throwing knife carrots to here as well. I think there are other animations 
+    // for that sprites that we can utilize
+    void PlayerShoot()
+    {
+        //VPC - Fire1 = left ctrl by default. Can change in Unity > Edit > Project Settings > Input Manager
+        if (Input.GetButtonDown("Fire1") && hasPGUN) 
+            
+        {
+            anim.SetBool(SHOOT_ANIMATION, true);
+            StartCoroutine(shootTimer());
+        }
+    }
+
+    IEnumerator shootTimer()
+    {
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool(SHOOT_ANIMATION, false);
     }
 }
