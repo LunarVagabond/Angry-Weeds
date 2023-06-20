@@ -125,6 +125,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1651717887859414660}
+  - {fileID: 5536261436449181524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -326,28 +327,15 @@ MonoBehaviour:
   landingSFX: {fileID: 5946493494559142886}
   runningSFX: {fileID: -8348994438667237542}
   myBody: {fileID: 3038961317972321047}
+  PlayerSprites: []
   groundCheck: {fileID: 5536261436449181524}
   groundCheckRadius: 0.15
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  PlayerSprites: []
   pickUpSFX: {fileID: 2132424534686042820}
   ammoCount: 0
   hasPGUN: 0
---- !u!114 &6114432143465675172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8228608634685545678}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74947ed7d0318494b9d0ad7fad1ba50f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawner: {fileID: 0}
 --- !u!114 &-3370545463489305327
 MonoBehaviour:
   m_ObjectHideFlags: 0
