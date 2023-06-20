@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private AudioSource jumpSFX;
 
     [SerializeField]
+    private AudioSource chantSFX;
+
+    [SerializeField]
     private AudioSource landingSFX;
     [SerializeField] private AudioSource runningSFX;
 
@@ -62,6 +65,9 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+
+        chantSFX.Play();
+
         // Getting Components so we can manipulate them in code
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
