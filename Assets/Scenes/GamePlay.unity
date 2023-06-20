@@ -5349,9 +5349,9 @@ GameObject:
   m_Component:
   - component: {fileID: 362447305}
   m_Layer: 0
-  m_Name: Right (1)
+  m_Name: Right 2.0
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5363,7 +5363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362447304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.57, y: 3.3, z: 0}
+  m_LocalPosition: {x: 95.4, y: 2.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8448,10 +8448,10 @@ MonoBehaviour:
   - {fileID: 6997816322180704471, guid: 266a6f63847baf74f8994786127146d4, type: 3}
   leftPos: {fileID: 1791701158}
   rightPos: {fileID: 206489468}
-  leftPos2: {fileID: 0}
-  rightPos2: {fileID: 0}
-  leftPos3: {fileID: 0}
-  rightPos3: {fileID: 0}
+  leftPos2: {fileID: 673718244}
+  rightPos2: {fileID: 362447305}
+  leftPos3: {fileID: 1422278748}
+  rightPos3: {fileID: 788370467}
   spawnedEnemies: []
   numOfMonsters: {fileID: 1106319498}
 --- !u!4 &568351603
@@ -10433,7 +10433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 673718244}
   m_Layer: 0
-  m_Name: Left (1)
+  m_Name: Left 2.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10447,7 +10447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673718243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -93.9, y: 2.73, z: 0}
+  m_LocalPosition: {x: -92.02, y: 2.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12356,7 +12356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 788370467}
   m_Layer: 0
-  m_Name: Right (2)
+  m_Name: Right 3.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22634,7 +22634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422278748}
   m_Layer: 0
-  m_Name: Left (2)
+  m_Name: Left 3.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
