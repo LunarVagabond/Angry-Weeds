@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8233165891957462159}
   - component: {fileID: 2818995460121272085}
   - component: {fileID: 5967596606127549245}
-  - component: {fileID: 3977109007406934265}
   - component: {fileID: 2976895224233476488}
   - component: {fileID: -5368652394646242570}
   - component: {fileID: -1165916273995877784}
@@ -250,19 +249,6 @@ MonoBehaviour:
     m_Bits: 128
   pickUpSFX: {fileID: 4552732251039233135}
   ammoCount: 0
---- !u!114 &3977109007406934265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997516390815729575}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74947ed7d0318494b9d0ad7fad1ba50f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawner: {fileID: 0}
 --- !u!114 &2976895224233476488
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,10 +7,14 @@ public class Collector : MonoBehaviour
     [SerializeField] MonsterSpawner spawner;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
-            spawner.spawnedEnemies.Remove(collision.gameObject);
+            GameObject enemy = collision.gameObject;
+            Transform eT = enemy.transform;
+            enemy.transform.localScale = new Vector2(eT.transform.localScale.x * -1, eT.transform.localScale.y);
+            enemy.GetComponent<Monster>().speed *= -1;
+            // Destroy(collision.gameObject);
+            // spawner.spawnedEnemies.Remove(collision.gameObject);
 
         } 
     }
