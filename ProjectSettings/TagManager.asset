@@ -10,6 +10,7 @@ TagManager:
   - Ammo
   - Moving Platform
   - PotatoGun
+  - PotatoAmmoText
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI
   - Enemy
   - Ground
-  - Camera Collision
+  - 
   - 
   - 
   - 

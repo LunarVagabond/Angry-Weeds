@@ -9,6 +9,9 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField]
     private GameObject[] monsterReference;
 
+    [SerializeField] private int totalMonstersToSpawn = 10;
+    [SerializeField] private Text totalMonstersText;
+
     [SerializeField]
     private Transform leftPos, rightPos;
     [SerializeField]
@@ -35,9 +38,13 @@ public class MonsterSpawner : MonoBehaviour
         StartCoroutine(SpawnMonsters());
     }
 
+    void Awake() {
+        totalMonstersText.text = "Total Monsters: " + totalMonstersToSpawn.ToString();
+    }
+
     IEnumerator SpawnMonsters() {
         spawnedEnemies.Clear();
-        while(true) { //always true while loop
+        for (int i = 1; i <= totalMonstersToSpawn; i++) { //always true while loop
             yield return new WaitForSeconds(Random.Range(3, 8));
             // Wait between a range of 1 and 5 seconds 
 
@@ -53,7 +60,7 @@ public class MonsterSpawner : MonoBehaviour
             spawnedMonster = Instantiate(monsterReference[randomIndex]);
             spawnedEnemies.Add(spawnedMonster);
             spawnedMonster.transform.parent = gameObject.transform; // dump spawned monsters under the spawner
-            numOfMonsters.text = "Monsters to kill: " + spawnedEnemies.Count;
+            numOfMonsters.text = "Monsters Left: " + spawnedEnemies.Count;
 
             // VPC 6/14 - The new sprites have different default scales between enemy types. Getting them here after
             // creation so that the Vector3 operation below doesn't set them back to 1.0f
