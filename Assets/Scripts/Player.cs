@@ -34,7 +34,11 @@ public class Player : MonoBehaviour
     private string JUMP_ANIMATION = "isJumping"; 
     private string GROUND_TAG = "Ground";
 
+    public Transform groundCheck;
+    public float groundCheckRadius = 0f;
+    public LayerMask groundLayer;
     private bool isGrounded;
+
     private const float rightSideOfScreen = 98.47478f;
     private const float leftSideOfScreen  = -98.47478f;
     [SerializeField] private AudioSource pickUpSFX;
@@ -118,9 +122,10 @@ public class Player : MonoBehaviour
 
     void PlayerJump()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            isGrounded = false; // Allows us to not jump two times
             runningSFX.Pause();
             jumpSFX.Play();
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -132,24 +137,20 @@ public class Player : MonoBehaviour
     // Checks to see if the player is colliding onto the ground
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         // If player and the ground collides 
-        if (collision.gameObject.CompareTag(GROUND_TAG) && collision.contacts[0].normal.y >= 1) // for 2D dectcting the collision for 
-                                                                                                //Player means that the contact point will have a Y of 1
+        if (isGrounded)
         {
             if (!isGrounded) landingSFX.Play(); // need the if to stop constant collision boops
-            isGrounded = true; // The player is on the ground
-
             anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
         }
-        else if(collision.gameObject.tag == "Ammo") {
+        if (collision.gameObject.tag == "Ammo") {
             pickUpSFX.Play();
             Destroy(collision.gameObject);
             ammoCount += Random.Range(1, 5);
         }
     }
 
-    public  bool GetIsGrounded()
+    public bool GetIsGrounded()
     {
         return isGrounded;
     }
