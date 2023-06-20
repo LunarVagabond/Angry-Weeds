@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - LifeText
   - Ammo
+  - Moving Platform
   - PotatoGun
   layers:
   - Default
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Ground
   - 
   - 
   - 
