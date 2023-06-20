@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,9 +31,13 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spriteR;
 
-    private string WALK_ANIMATION = "Walk"; //VPC 6/13 "run_side" changing from "Walk"; to accomodate new asset animation
+    [SerializeField] private SpriteRenderer[] PlayerSprites;
+    private SpriteRenderer SpriteGun;
+
+    private string WALK_ANIMATION = "Walk"; 
     private string JUMP_ANIMATION = "isJumping"; 
     private string GROUND_TAG = "Ground";
+    private string GUN_ANIMATION = "hasPGun";
 
     public Transform groundCheck;
     public float groundCheckRadius = 0f;
@@ -44,6 +49,13 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource pickUpSFX;
     public int ammoCount = 0;
 
+    [SerializeField]  private bool hasPGUN = false;
+
+    private Vector2 rightFace = new Vector2(0.25f, 0.11f),
+                    rightFaceJump = new Vector2(-0.51f, 0.3f),
+                    leftFace = new Vector2(-0.25f, 0.11f),
+                    leftFaceJump = new Vector2(0.51f, 0.3f);
+
     // ******* Global Variables *******
     #endregion
 
@@ -53,6 +65,12 @@ public class Player : MonoBehaviour
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteR = GetComponent<SpriteRenderer>();
+
+        //VPC 6/19 - puts all sprite renderers in game object and children, even if inactive (which the gun is to start)
+        // and puts into an array
+        PlayerSprites = GetComponentsInChildren<SpriteRenderer>(true);
+        // This is horrible, but works for now. Maybe fix in future to find it by name
+        SpriteGun = PlayerSprites[1];
     }
 
     // Start is called before the first frame update
@@ -104,6 +122,18 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = true; // Going to the right side, VPC 6/13 - have to flip t/f for new sprite
+            
+            // VPC 6/19 - flipping and re-centering the gun 
+            SpriteGun.flipX = true;
+
+            if (anim.GetBool(JUMP_ANIMATION))
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFaceJump, Quaternion.Euler(0f, 0f, 270f));
+            }
+            else 
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFace, Quaternion.identity);
+            }
         }
         else if (movementX < 0) // Going to the left 
         {
@@ -111,6 +141,18 @@ public class Player : MonoBehaviour
                 runningSFX.Play();
             anim.SetBool(WALK_ANIMATION, true);
             spriteR.flipX = false; // Going to the left size, VPC 6/13 - have to flip t/f for new sprite
+
+            // VPC 6/19 - flipping and re-centering the gun 
+            SpriteGun.flipX = false;
+            
+            if (anim.GetBool(JUMP_ANIMATION))
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFaceJump, Quaternion.Euler(0f, 0f, 90f));
+            }
+            else
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFace, Quaternion.identity);
+            }
         }
         else // The player is not moving 
         {
@@ -131,6 +173,14 @@ public class Player : MonoBehaviour
             myBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
 
             anim.SetBool(JUMP_ANIMATION, true); // VPC 6/14 - adding the setting of jump animation for characters
+            if (spriteR.flipX)
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFaceJump, Quaternion.Euler(0f, 0f, 270f));
+            }
+            else
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFaceJump, Quaternion.Euler(0f, 0f, 90f));
+            }
         }
     }
 
@@ -142,16 +192,28 @@ public class Player : MonoBehaviour
         {
             if (!isGrounded) landingSFX.Play(); // need the if to stop constant collision boops
             anim.SetBool(JUMP_ANIMATION, false); // VPC 6/14 - turning off jump animation when hitting ground
+
+            if (spriteR.flipX)
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(rightFace, Quaternion.identity);
+            }
+            else
+            {
+                SpriteGun.transform.SetLocalPositionAndRotation(leftFace, Quaternion.identity);
+            }
+            
         }
-        if (collision.gameObject.tag == "Ammo") {
+        if (collision.gameObject.tag == "Ammo")
+        {
             pickUpSFX.Play();
             Destroy(collision.gameObject);
             ammoCount += Random.Range(1, 5);
         }
-    }
-
-    public bool GetIsGrounded()
-    {
-        return isGrounded;
+        if (collision.gameObject.tag == "PotatoGun") {
+            pickUpSFX.Play();
+            Destroy(collision.gameObject);
+            hasPGUN = true;
+            anim.SetBool(GUN_ANIMATION, true);
+        }
     }
 }
