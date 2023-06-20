@@ -9,6 +9,7 @@ TagManager:
   - LifeText
   - Ammo
   - Moving Platform
+  - PotatoGun
   layers:
   - Default
   - TransparentFX

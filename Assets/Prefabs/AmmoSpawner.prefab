@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2429109204697284417
 MonoBehaviour:
@@ -46,8 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoTypes:
   - {fileID: 1739912314899262264, guid: bb04729df1461254aab2c38e634bd0e2, type: 3}
+  gunTypes:
+  - {fileID: 1739912314899262264, guid: ba26717428c110d4e86b84ddea080cfe, type: 3}
   xPos: 0
   yPos: 20
   minSpawnTime: 1
   maxSpawnTime: 4
   ammoCount: 0
+  gunVector: {x: 0, y: 0}

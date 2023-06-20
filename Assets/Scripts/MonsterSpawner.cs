@@ -70,6 +70,11 @@ public class MonsterSpawner : MonoBehaviour
                 // Red Monster and Green Monster. So Monster is the parent.
                 // So whatever Monster spawns it will have a random speed between
                 // 4 and 10.
+
+                if (randomIndex == 2) { 
+                    x_scale *= -1;
+                    spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
+                }
             }
             else // Right Side 
             {
@@ -78,9 +83,12 @@ public class MonsterSpawner : MonoBehaviour
                 // We spawn a random negative number between -4 and -10 so the enemy from
                 // the right will travel to the left side of the screen.
 
-                x_scale *= -1;
-                spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
-                // Flip the enemy to face the left direction
+                if (randomIndex != 2)
+                {
+                    x_scale *= -1;
+                    spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
+                    // Flip the enemy to face the left direction
+                }
             }
         } // End of While Loop
     }
