@@ -63,7 +63,28 @@ public class MonsterSpawner : MonoBehaviour
 
             if (randomSide == 0) // Left Side 
             {
-                spawnedMonster.transform.position = leftPos.position;
+                int randomLeftIndex = Random.Range(0,3); // Create a random numbers between: 0, 1, 2
+
+                // 0 = Bottom Left
+                // 1 = Middle Left
+                // 2 = Top Left
+
+                if(randomLeftIndex == 0)
+                {
+                    spawnedMonster.transform.position = leftPos.position; // Spawns in the bottom left 
+                }
+                else if(randomLeftIndex == 1)
+                {
+                    spawnedMonster.transform.position = leftPos2.position; // Spawns in the middle left 
+
+                }
+                else if(randomLeftIndex == 2)
+                {
+                    spawnedMonster.transform.position = leftPos3.position; // Spawns in the topleft 
+
+                }
+
+
                 spawnedMonster.GetComponent<Monster>().speed = Random.Range(3, 10);
                 // Speed will range between 4 and 10.
                 // Monster in this sense is the class that is tagged onto the Ghost
@@ -71,9 +92,31 @@ public class MonsterSpawner : MonoBehaviour
                 // So whatever Monster spawns it will have a random speed between
                 // 4 and 10.
             }
-            else // Right Side 
+            else // Right Side
             {
-                spawnedMonster.transform.position = rightPos.position;
+
+
+                int randomRightIndex = Random.Range(0, 3); // Create a random numbers between: 0, 1, 2
+
+                // 0 = Bottom Right
+                // 1 = Middle Right
+                // 2 = Top Right
+
+                if (randomRightIndex == 0)
+                {
+                    spawnedMonster.transform.position = rightPos.position; // Spawns in the bottom right
+                }
+                else if (randomRightIndex == 1)
+                {
+                    spawnedMonster.transform.position = rightPos2.position; // Spawns in the middle right
+
+                }
+                else if (randomRightIndex == 2)
+                {
+                    spawnedMonster.transform.position = rightPos3.position; // Spawns in the top right
+
+                }
+             
                 spawnedMonster.GetComponent<Monster>().speed = -Random.Range(3, 10);
                 // We spawn a random negative number between -4 and -10 so the enemy from
                 // the right will travel to the left side of the screen.
