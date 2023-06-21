@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private AudioSource jumpSFX;
 
     [SerializeField]
+    private AudioSource chantSFX;
+
+    [SerializeField]
     private AudioSource landingSFX;
     [SerializeField] private AudioSource runningSFX;
 
@@ -50,6 +53,7 @@ public class Player : MonoBehaviour
     private const float leftSideOfScreen  = -98.47478f;
     [SerializeField] private AudioSource pickUpSFX;
     public int ammoCount = 0;
+    [SerializeField] private Text potatoAmmoText;
 
     [SerializeField]  private bool hasPGUN = false;
 
@@ -66,10 +70,15 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+
+        chantSFX.Play();
+
         // Getting Components so we can manipulate them in code
         myBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spriteR = GetComponent<SpriteRenderer>();
+        potatoAmmoText = GameObject.FindWithTag("PotatoAmmoText").GetComponent<Text>();
+        potatoAmmoText.text = "Poatao's: " + ammoCount;
 
         //VPC 6/19 - puts all sprite renderers in game object and children, even if inactive (which the gun is to start)
         // and puts into an array
@@ -218,6 +227,7 @@ public class Player : MonoBehaviour
             pickUpSFX.Play();
             Destroy(collision.gameObject);
             ammoCount += Random.Range(1, 5);
+            potatoAmmoText.text = "Poatao's: " + ammoCount;
         }
         if (collision.gameObject.tag == "PotatoGun") {
             pickUpSFX.Play();

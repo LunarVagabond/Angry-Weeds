@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvulnerable = false;
     private string MONSTER_TAG = "Enemy";
     [SerializeField] private AudioSource damageTakenSFX;
+    [SerializeField] private AudioSource playerDeathSFX;
 
     public int health;
     public int maxHealth = 3;
@@ -22,19 +23,12 @@ public class PlayerHealth : MonoBehaviour
         livesText.text = "Lives: " + maxHealth.ToString();
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
 
         if (other.gameObject.tag == MONSTER_TAG)
             DealDamage(1);
     }
-
-    // Runs each frame there is a collision. So if an enemy keeps pushing us we can drain hp
-    // private void OnCollisionStay2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.tag == MONSTER_TAG)
-    //         DealDamage(1);
-    // }
 
     public void DealDamage(int damage)
     {
@@ -42,13 +36,19 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("deal damage called");
             health -= damage;
-            damageTakenSFX.Play();
+
+            // Or else lower we play the death sound 
+            if (health >= 1)
+            {
+                damageTakenSFX.Play();
+            }
             isInvulnerable = true;
 
             if (health <= 0)
             {
                 // TODO: Add a death sound here once we figure out how to destroy character
                 // Currently the character can't be deleted due to special prefab clone properties (I think)
+                playerDeathSFX.Play();
                 FindObjectOfType<GameManager>().GameOver();
             }
             else
