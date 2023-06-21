@@ -23,19 +23,12 @@ public class PlayerHealth : MonoBehaviour
         livesText.text = "Lives: " + maxHealth.ToString();
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
 
         if (other.gameObject.tag == MONSTER_TAG)
             DealDamage(1);
     }
-
-    // Runs each frame there is a collision. So if an enemy keeps pushing us we can drain hp
-    // private void OnCollisionStay2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.tag == MONSTER_TAG)
-    //         DealDamage(1);
-    // }
 
     public void DealDamage(int damage)
     {
