@@ -150,9 +150,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 882f38efd0b3ac648b6aad20ea575499, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7e5d13f72be334a90bc8762630b2bbdf, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -467,7 +467,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 745766053}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 882f38efd0b3ac648b6aad20ea575499, type: 3}
@@ -1172,7 +1172,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Female Character Name
+  m_Text: Jessie The Farmer
 --- !u!222 &1472554023
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1252,7 +1252,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Male Character Name
+  m_Text: 'Joe The Farmer
+
+'
 --- !u!222 &1648067041
 CanvasRenderer:
   m_ObjectHideFlags: 0
