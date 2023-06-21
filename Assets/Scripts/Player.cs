@@ -251,9 +251,10 @@ public class Player : MonoBehaviour
     void PlayerShoot()
     {
         //VPC - Fire1 = left ctrl by default. Can change in Unity > Edit > Project Settings > Input Manager
-        if (Input.GetButtonDown("Fire1") && hasPGUN && shootEnabled) 
+        if (Input.GetButtonDown("Fire1") && hasPGUN && shootEnabled && ammoCount > 0) 
             
         {
+            ammoCount -= 1;
             shootEnabled = false;
             anim.SetBool(SHOOT_ANIMATION, true);
             StartCoroutine(shootTimer());

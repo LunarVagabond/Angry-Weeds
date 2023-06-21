@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7720853537246298809}
   - component: {fileID: 6432042191323821129}
   - component: {fileID: 7643089887386661561}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Potato_shot
   m_TagString: Projectile
   m_Icon: {fileID: 0}
