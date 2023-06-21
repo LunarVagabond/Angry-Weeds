@@ -259,6 +259,7 @@ public class Player : MonoBehaviour
             anim.SetBool(SHOOT_ANIMATION, true);
             StartCoroutine(shootTimer());
             ShootSFX.Play();
+            potatoAmmoText.text = "Poatao's: " + ammoCount;
             
             // VPC 6/21 - creating a projectile and imparting force on it depending on the direction player is facing 
             GameObject potShot;
