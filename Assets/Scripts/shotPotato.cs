@@ -6,7 +6,7 @@ public class shotPotato : MonoBehaviour
 {
     Player player;
     private int shotDirection; // 1 for to the right, -1 for to the left
-    private float potatoShotForce = 5.0f;
+    private float potatoShotForce = 20.0f;
 
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class shotPotato : MonoBehaviour
     void Update()
     {
         moveTater();
+        checkBoundaries();
     }
 
     void moveTater()
@@ -43,4 +44,21 @@ public class shotPotato : MonoBehaviour
         else
             Debug.Log("The tater did not get the direction... womp womp!");
     }
+
+    void checkBoundaries()
+    {
+        // VPC 6/21 - We should fill in this to check if the projectile has reached the edge of the camera view
+        // We probably do not want the ammo rounds to continue off screen and kill enemies that the 
+        // player cannot see. 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+            Destroy(this.gameObject);
+        }
+    }
+
 }

@@ -227,6 +227,8 @@ public class Player : MonoBehaviour
             }
             
         }
+        
+        //Collision to "pick up" ammo
         if (collision.gameObject.tag == "Ammo")
         {
             pickUpSFX.Play();
@@ -234,6 +236,7 @@ public class Player : MonoBehaviour
             ammoCount += Random.Range(1, 5);
             potatoAmmoText.text = "Poatao's: " + ammoCount;
         }
+        //Collision to "pick up" the potato gun
         if (collision.gameObject.tag == "PotatoGun") {
             pickUpSFX.Play();
             Destroy(collision.gameObject);
