@@ -11,6 +11,7 @@ TagManager:
   - Moving Platform
   - PotatoGun
   - PotatoAmmoText
+  - Projectile
   layers:
   - Default
   - TransparentFX
