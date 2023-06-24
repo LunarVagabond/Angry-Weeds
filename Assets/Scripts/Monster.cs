@@ -6,7 +6,8 @@ public class Monster : MonoBehaviour
 {
     [HideInInspector]
     public float speed;
-
+    public float direction;
+    
     private Rigidbody2D myBody;
 
     private void Awake()
