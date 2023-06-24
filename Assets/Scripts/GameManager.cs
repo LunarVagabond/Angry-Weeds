@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     // A static instance of itself inside the Game Manager
     private string GAME_PLAY = "GamePlay";
+    public int CurrentWave {get; set;}
 
     [SerializeField]
     private GameObject[] characters;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     // Awake() is pretty much the constructor for GameManager
     private void Awake()
     {
+        CurrentWave = 1;
         if (instance == null)
         {
             instance = this; // We are using the Singleton pattern and can only have one instance

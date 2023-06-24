@@ -12,6 +12,7 @@ TagManager:
   - PotatoGun
   - PotatoAmmoText
   - Projectile
+  - Bat
   layers:
   - Default
   - TransparentFX

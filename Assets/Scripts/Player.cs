@@ -232,7 +232,7 @@ public class Player : MonoBehaviour
         {
             pickUpSFX.Play();
             Destroy(collision.gameObject);
-            ammoCount += Random.Range(1, 5);
+            ammoCount += Random.Range(1, 2); // may change some day later so not hard coded to 1
             potatoAmmoText.text = "Poatao's: " + ammoCount;
         }
         //Collision to "pick up" the potato gun
