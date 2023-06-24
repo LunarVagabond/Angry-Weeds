@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 
     private string WALK_ANIMATION = "Walk"; 
     private string JUMP_ANIMATION = "isJumping"; 
-    private string GROUND_TAG = "Ground";
     private string GUN_ANIMATION = "hasPGun";
     private string SHOOT_ANIMATION = "shootGun";
 
