@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         {
 
             GameObject player = Instantiate(characters[characterIndex]);
-            player.transform.position = new Vector2(-3, 21);
+           // player.transform.position = new Vector2(-3, 21);
         }
     }
 
