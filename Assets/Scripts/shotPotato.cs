@@ -17,10 +17,12 @@ public class shotPotato : MonoBehaviour
         shotDirection = player.playerFaceDirection;
     }
 
+    public delegate void DecrementMonsterEventHandler();
+    public static event DecrementMonsterEventHandler MonsterDecrementEvent;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -63,6 +65,7 @@ public class shotPotato : MonoBehaviour
             MonsterSpawner ms = collision.gameObject.GetComponentInParent<MonsterSpawner>();
             ms.spawnedEnemies.Remove(collision.gameObject);
             ms.numOfMonsters.text = "Monsters Left: " + ms.spawnedEnemies.Count;
+            MonsterDecrementEvent?.Invoke();
         }
     }
 

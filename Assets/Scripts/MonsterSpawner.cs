@@ -8,8 +8,10 @@ public class MonsterSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject[] monsterReference;
+    [SerializeField] Text waveText;
 
-    [SerializeField] private int totalMonstersToSpawn = 10;
+    [SerializeField] private int baseEnemiesPerWave = 15;
+    public float scalingFactor = 1.2f;
     [SerializeField] private Text totalMonstersText;
 
     [SerializeField]
@@ -21,6 +23,7 @@ public class MonsterSpawner : MonoBehaviour
 
     private GameObject spawnedMonster;
     public List<GameObject> spawnedEnemies;
+    public int monstersLeftTracker;
 
     private int randomIndex;
     private int randomSide;
@@ -35,16 +38,22 @@ public class MonsterSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waveText.text = "Wave: 1";
+        shotPotato.MonsterDecrementEvent += DecrementMonsterTracker;
         StartCoroutine(SpawnMonsters());
+        StopCoroutine(SpawnMonsters());
     }
 
     void Awake() {
-        totalMonstersText.text = "Total Monsters: " + totalMonstersToSpawn.ToString();
+        totalMonstersText.text = "Total Monsters: " + baseEnemiesPerWave.ToString();
     }
 
     IEnumerator SpawnMonsters() {
+        int numberOfEnemies = Mathf.RoundToInt(baseEnemiesPerWave * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1));
+        monstersLeftTracker = numberOfEnemies;
+        totalMonstersText.text = "Total Monsters: " + baseEnemiesPerWave.ToString();
         spawnedEnemies.Clear();
-        for (int i = 1; i <= totalMonstersToSpawn; i++) { //always true while loop
+        for (int i = 1; i <= numberOfEnemies; i++) { 
             yield return new WaitForSeconds(Random.Range(3, 8));
             // Wait between a range of 1 and 5 seconds 
 
@@ -155,10 +164,23 @@ public class MonsterSpawner : MonoBehaviour
         } // End of While Loop
     }
 
+    void OnDestroy() {
+        shotPotato.MonsterDecrementEvent -= DecrementMonsterTracker;
+    }
 
     // Update is called once per frame
     void Update()
     {
         
     }
+
+    void DecrementMonsterTracker() {
+        monstersLeftTracker--;
+        if (monstersLeftTracker <= 1) {
+            GameManager.instance.CurrentWave++;
+            waveText.text = "Wave: " + GameManager.instance.CurrentWave.ToString();
+            StartCoroutine(SpawnMonsters());
+        }
+    }
+
 }
