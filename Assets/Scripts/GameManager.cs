@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     // A static instance of itself inside the Game Manager
     private string GAME_PLAY = "GamePlay";
-    public int CurrentWave {get; set;}
+
+    public delegate void WaveIncrementEventHandler();
+    public static event WaveIncrementEventHandler WaveUpEvent;
+    public int CurrentWave;
 
     [SerializeField]
     private GameObject[] characters;
@@ -21,6 +24,11 @@ public class GameManager : MonoBehaviour
     {
         get { return _characterIndex; }
         set { _characterIndex = value; }
+    }
+
+    public void UpWave() {
+        CurrentWave++;
+        WaveUpEvent?.Invoke(); 
     }
 
     // If the static GameManger 'instance' is equal to nothing then it will
@@ -66,7 +74,7 @@ public class GameManager : MonoBehaviour
         {
 
             GameObject player = Instantiate(characters[characterIndex]);
-           // player.transform.position = new Vector2(-3, 21);
+            // player.transform.position = new Vector2(-3, 21);
         }
     }
 

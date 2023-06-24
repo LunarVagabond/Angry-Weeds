@@ -9952,7 +9952,7 @@ MonoBehaviour:
   - {fileID: 4789565998399729135, guid: b54cb3b3d365a2a4b97286822bbefd97, type: 3}
   - {fileID: 3744331417070929950, guid: d1f3735b9a58957419dc9af03fdedcc6, type: 3}
   waveText: {fileID: 1163192810}
-  baseEnemiesPerWave: 10
+  baseEnemiesPerWave: 1
   scalingFactor: 1.2
   totalMonstersText: {fileID: 1106319498}
   bottomLeftPos: {fileID: 1791701158}

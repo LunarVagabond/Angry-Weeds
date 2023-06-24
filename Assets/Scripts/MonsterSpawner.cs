@@ -216,7 +216,7 @@ public class MonsterSpawner : MonoBehaviour
             UpdateRemainingMonsterText();
             if (monstersLeftTracker < 1)
             {
-                GameManager.instance.CurrentWave++;
+                GameManager.instance.UpWave();
                 UpdateWaveText();
                 StartCoroutine(SpawnMonsters());
             }
