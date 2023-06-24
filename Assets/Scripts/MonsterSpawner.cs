@@ -54,8 +54,8 @@ public class MonsterSpawner : MonoBehaviour
     {
         int numberOfEnemies = Mathf.RoundToInt(baseEnemiesPerWave * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1));
         monstersLeftTracker = numberOfEnemies;
-        totalMonstersText.text = "Total Monsters: " + numberOfEnemies.ToString();
-        numOfMonsters.text = "Monsters Left: " + monstersLeftTracker.ToString();
+        UpdateTotalMonsterText(numberOfEnemies);
+        UpdateRemainingMonsterText();
         spawnedEnemies.Clear();
         for (int i = 1; i <= numberOfEnemies; i++)
         {
@@ -63,6 +63,7 @@ public class MonsterSpawner : MonoBehaviour
             // Wait between a range of 1 and 5 seconds 
             int maxRange = batMax >= totalBatsSpawn ? monsterReference.Length - 1 : monsterReference.Length;
             randomEnemy = Random.Range(0, maxRange);
+            if (randomEnemy == 2) i--; // spawned a bat don't count against the iterations 
 
             // Spawns a copy the object determined by the index 0,1,2.
             spawnedMonster = Instantiate(monsterReference[randomEnemy]);
@@ -90,10 +91,6 @@ public class MonsterSpawner : MonoBehaviour
 
             spawnedMonster.transform.parent = gameObject.transform; // dump spawned monsters under the spawner
 
-
-
-
-            //numOfMonsters.text = "Monsters Left: " + totalMonstersToSpawn;
 
             // VPC 6/14 - The new sprites have different default scales between enemy types. Getting them here after
             // creation so that the Vector3 operation below doesn't set them back to 1.0f
@@ -216,14 +213,18 @@ public class MonsterSpawner : MonoBehaviour
         if (tag != "Bat")
         {
             monstersLeftTracker--;
-            numOfMonsters.text = "Monsters Left: " + monstersLeftTracker.ToString();
+            UpdateRemainingMonsterText();
             if (monstersLeftTracker < 1)
             {
                 GameManager.instance.CurrentWave++;
-                waveText.text = "Wave: " + GameManager.instance.CurrentWave.ToString();
+                UpdateWaveText();
                 StartCoroutine(SpawnMonsters());
             }
         }
     }
+
+    void UpdateRemainingMonsterText() => numOfMonsters.text = "Monsters Left: " + monstersLeftTracker.ToString();
+    void UpdateWaveText() => waveText.text = "Wave: " + GameManager.instance.CurrentWave.ToString();
+    void UpdateTotalMonsterText(int numberOfEnemies) => totalMonstersText.text = "Total Monsters: " + numberOfEnemies.ToString();
 
 }

@@ -65,7 +65,6 @@ public class shotPotato : MonoBehaviour
             // FIXME: this is not the best way to do this 
             MonsterSpawner ms = collision.gameObject.GetComponentInParent<MonsterSpawner>();
             ms.spawnedEnemies.Remove(collision.gameObject);
-            ms.numOfMonsters.text = "Monsters Left: " + ms.spawnedEnemies.Count;
             MonsterDecrementEvent?.Invoke(collision.gameObject.tag);
         }
     }
