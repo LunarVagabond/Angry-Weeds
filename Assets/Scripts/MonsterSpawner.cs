@@ -58,7 +58,19 @@ public class MonsterSpawner : MonoBehaviour
 
             // Spawns a copy the object determined by the index 0,1,2.
             spawnedMonster = Instantiate(monsterReference[randomIndex]);
+            GameObject groundCheck = new GameObject("GroundCheck");
+            groundCheck.transform.SetParent(spawnedMonster.transform);
+            // [Chris]: Ask I'll explain =)
+            spawnedMonster.transform.name =   $"Monster {i}: {spawnedMonster.name.Substring(0, spawnedMonster.name.Length - 7)}";
+            groundCheck.transform.localPosition = new Vector2(0f, -gameObject.transform.localScale.y / 2f);
+            spawnedMonster.gameObject.GetComponent<Monster>().groundCheck = groundCheck.transform;
+            spawnedMonster.gameObject.GetComponent<Monster>().mType = randomIndex;
+            spawnedMonster.gameObject.GetComponent<Monster>().objName = $"Monster {i}: {spawnedMonster.name.Substring(0, spawnedMonster.name.Length - 7 )}";
+            spawnedMonster.gameObject.GetComponent<Monster>().groundLayer = LayerMask.GetMask("Ground");
+            spawnedMonster.gameObject.GetComponent<Monster>().groundCheckRadius = 0.15f;
+            spawnedMonster.gameObject.GetComponent<Monster>().jumpPercentage = Random.Range(0, 41) / 100f; // set the jump rate to some random percentage (min = 0, max = 40)
             spawnedEnemies.Add(spawnedMonster);
+            // End my knowledge
             spawnedMonster.transform.parent = gameObject.transform; // dump spawned monsters under the spawner
             numOfMonsters.text = "Monsters Left: " + spawnedEnemies.Count;
 
