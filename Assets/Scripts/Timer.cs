@@ -6,7 +6,7 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
 
-    private float timeDuration = 3f * 60; // 3 Seconds but we make it display in seconds
+    private float timeDuration = 5f * 60; // 3 Seconds but we make it display in seconds
 
     private float timer; // Keeps track of the time
 

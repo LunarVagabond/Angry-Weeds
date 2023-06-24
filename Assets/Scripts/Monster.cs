@@ -5,7 +5,8 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     public float speed;
-
+    public float direction;
+    
     private Rigidbody2D myBody;
     public int mType { get; set; }
     bool isGrounded;

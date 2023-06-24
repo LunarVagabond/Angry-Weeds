@@ -8,6 +8,7 @@ public class shotPotato : MonoBehaviour
     Player player;
     private int shotDirection; // 1 for to the right, -1 for to the left
     private float potatoShotForce = 20.0f;
+    public int enemiesKilled = 0;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public class shotPotato : MonoBehaviour
         shotDirection = player.playerFaceDirection;
     }
 
-    public delegate void DecrementMonsterEventHandler();
+    public delegate void DecrementMonsterEventHandler(Collision2D collision);
     public static event DecrementMonsterEventHandler MonsterDecrementEvent;
 
     // Start is called before the first frame update
@@ -57,15 +58,15 @@ public class shotPotato : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bat")
         {
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject); // Kill all enemies including bats 
             Destroy(this.gameObject);
             // FIXME: this is not the best way to do this 
             MonsterSpawner ms = collision.gameObject.GetComponentInParent<MonsterSpawner>();
             ms.spawnedEnemies.Remove(collision.gameObject);
             ms.numOfMonsters.text = "Monsters Left: " + ms.spawnedEnemies.Count;
-            MonsterDecrementEvent?.Invoke();
+            MonsterDecrementEvent?.Invoke(collision);
         }
     }
 
