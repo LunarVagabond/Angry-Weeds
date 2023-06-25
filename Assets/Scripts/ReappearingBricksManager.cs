@@ -18,9 +18,9 @@ public class ReappearingBricksManager : MonoBehaviour
         // This only allows for once instance of this class 
         if (instance == null)
         {
-            instance = this; 
+            instance = this;
         }
-        else if(instance != this)
+        else if (instance != this)
         {
             Destroy(gameObject); // Destroy the new instance 
         }
@@ -31,21 +31,42 @@ public class ReappearingBricksManager : MonoBehaviour
     {
         // Create four brick platforms, in the appropriate positions that we want
 
-        
-        Instantiate(platform, new Vector2(71.46f, 5.29f), platform.transform.rotation);
 
-        Instantiate(platform, new Vector2(73.22f, 7.4f), platform.transform.rotation);
-        Instantiate(platform, new Vector2(75.673f, 9.66f), platform.transform.rotation);
-        Instantiate(platform, new Vector2(80.31f, 9.71f), platform.transform.rotation);
+        CreateFallingPlatform(new Vector2(71.46f, 5.29f), platform.transform.rotation);
+        CreateFallingPlatform(new Vector2(73.22f, 7.4f), platform.transform.rotation);
+        CreateFallingPlatform(new Vector2(71.9f, 7.84f), platform.transform.rotation);
+        CreateFallingPlatform(new Vector2(75.87f, 6.08f), platform.transform.rotation);
+        CreateFallingPlatform(new Vector2(81.13f, 6.08f), platform.transform.rotation);
 
     }
 
-    IEnumerator  spawnPlatform(Vector2 spawnPosition)
+    void CreateFallingPlatform(Vector2 loc, Quaternion rotaion)
     {
-       
-            yield return new WaitForSeconds(2f);
-            Instantiate(platform, spawnPosition, platform.transform.rotation); // Create the new passed in platform with the appropriate positioning
+        /*
+        Here we are instantiating the platform in the level and adding a private script to it 
+        with this the platforms will destory when hitting ground
+        */
+        GameObject newPlatform = Instantiate(platform, loc, rotaion);
+        newPlatform.AddComponent<PrivateCollisionHander>();
+    }
 
-     
+    // Internal class acting as a script attached to each falling platform (it's messy but better astetics in game)
+    public class PrivateCollisionHander : MonoBehaviour
+    {
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            // Check if the collision is with the specific object you want to trigger the destruction
+            if (collision.gameObject.CompareTag("Ground"))
+            {
+                Destroy(gameObject); // Destroy the collided object
+            }
+        }
+    }
+
+    IEnumerator spawnPlatform(Vector2 spawnPosition)
+    {
+        yield return new WaitForSeconds(2.5f);
+        CreateFallingPlatform(spawnPosition, platform.transform.rotation); // Create the new passed in platform with the appropriate positioning
+
     }
 }

@@ -43,7 +43,7 @@ public class BrickScript : MonoBehaviour
                 // before it falls 
                 Invoke("dropPlatform", 0.5f);
 
-                Destroy(gameObject, 2f); // Destroy the platform after 2 seconds
+                // Destroy(gameObject, 2f); // Destroy the platform after 2 seconds
 
 
             }
