@@ -25,8 +25,12 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-
         if (other.gameObject.tag == MONSTER_TAG || other.gameObject.CompareTag("Bat"))
+            DealDamage(1);
+    }
+
+    void OnTriggerEnter2D(Collider2D otherObj) {
+        if (otherObj.gameObject.tag == MONSTER_TAG || otherObj.gameObject.CompareTag("Bat"))
             DealDamage(1);
     }
 
