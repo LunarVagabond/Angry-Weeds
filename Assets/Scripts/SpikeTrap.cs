@@ -13,7 +13,7 @@ public class SpikeTrap : MonoBehaviour
     void ShouldSpawnSpikes() {
         Transform spikes = gameObject.transform.GetChild(0);
         Debug.Log("transform: " + spikes);
-        if (Random.value < .7f)
-           spikes.gameObject.SetActive(false);
+        if (Random.value < .3f)
+           spikes.gameObject.SetActive(true);
     }
 }
