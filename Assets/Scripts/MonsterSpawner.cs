@@ -35,6 +35,9 @@ public class MonsterSpawner : MonoBehaviour
 
     [SerializeField]
     public Text numOfMonsters;
+    
+    [SerializeField] public Text playerScoreText;
+    public int playerScore = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -214,6 +217,10 @@ public class MonsterSpawner : MonoBehaviour
         {
             monstersLeftTracker--;
             UpdateRemainingMonsterText();
+
+            playerScore += 10;
+            UpdatePlayerScoreText(playerScore);
+
             if (monstersLeftTracker < 1)
             {
                 GameManager.instance.UpWave();
@@ -226,5 +233,5 @@ public class MonsterSpawner : MonoBehaviour
     void UpdateRemainingMonsterText() => numOfMonsters.text = "Monsters Left: " + monstersLeftTracker.ToString();
     void UpdateWaveText() => waveText.text = "Wave: " + GameManager.instance.CurrentWave.ToString();
     void UpdateTotalMonsterText(int numberOfEnemies) => totalMonstersText.text = "Total Monsters: " + numberOfEnemies.ToString();
-
+    void UpdatePlayerScoreText(int playerScore) => playerScoreText.text = "Score: " + playerScore.ToString();
 }

@@ -13,6 +13,7 @@ TagManager:
   - PotatoAmmoText
   - Projectile
   - Bat
+  - MonsterSpawner
   layers:
   - Default
   - TransparentFX
