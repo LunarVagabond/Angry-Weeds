@@ -9534,7 +9534,7 @@ GameObject:
   - component: {fileID: 568351602}
   m_Layer: 0
   m_Name: Spawner
-  m_TagString: Untagged
+  m_TagString: MonsterSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
