@@ -15,5 +15,7 @@ public class SpikeTrap : MonoBehaviour
         Debug.Log("transform: " + spikes);
         if (Random.value < .3f)
            spikes.gameObject.SetActive(true);
+        else 
+            spikes.gameObject.SetActive(false);
     }
 }

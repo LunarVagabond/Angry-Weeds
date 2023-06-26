@@ -7392,6 +7392,7 @@ Transform:
   - {fileID: 1923996955}
   - {fileID: 1344053840}
   - {fileID: 1136513978}
+  - {fileID: 845968315}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9478,7 +9479,7 @@ MonoBehaviour:
   - {fileID: 4789565998399729135, guid: b54cb3b3d365a2a4b97286822bbefd97, type: 3}
   - {fileID: 3744331417070929950, guid: d1f3735b9a58957419dc9af03fdedcc6, type: 3}
   waveText: {fileID: 1163192810}
-  baseEnemiesPerWave: 1
+  baseEnemiesPerWave: 25
   scalingFactor: 1.2
   totalMonstersText: {fileID: 1106319498}
   bottomLeftPos: {fileID: 1791701158}
@@ -9843,7 +9844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597168774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51.14, y: 10.35, z: 0}
+  m_LocalPosition: {x: 51.37, y: 9.34, z: 0}
   m_LocalScale: {x: 0.4683252, y: 0.31395307, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15860,7 +15861,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1765039763}
-  - {fileID: 1179435554}
   - {fileID: 628938926}
   - {fileID: 621409071}
   - {fileID: 1742853781}
@@ -15987,6 +15987,7 @@ Transform:
   - {fileID: 1383087910}
   - {fileID: 1994135662}
   - {fileID: 1693576047}
+  - {fileID: 1673956289}
   m_Father: {fileID: 445290736}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
