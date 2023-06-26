@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Unity.VisualScripting.FullSerializer;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     // Can either be 0 which is Player 1 or a 1 which is Player 2 
     private int _characterIndex;
+    
+    private int checkScore;
+    MonsterSpawner thisMS;
 
     // This is a public Getter/Setter Method 
     public int characterIndex
@@ -80,6 +84,24 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        // VPC 6/26 - checking the score against playerPrefs for new high score
+        thisMS = GameObject.FindGameObjectWithTag("MonsterSpawner").GetComponent<MonsterSpawner>();
+        checkScore = thisMS.playerScore;
+        if (PlayerPrefs.HasKey("hiScore"))
+        {
+            if (checkScore > PlayerPrefs.GetInt("hiScore"))
+            {
+                PlayerPrefs.SetInt("hiScore", checkScore);
+                PlayerPrefs.Save();
+            }
+        }
+        //sets initial high score
+        else
+        {
+            PlayerPrefs.SetInt("hiScore", checkScore);
+            PlayerPrefs.Save();
+        }
+
         SceneManager.LoadScene("MainMenu");
     }
 } // Class 
