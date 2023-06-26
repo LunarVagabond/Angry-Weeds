@@ -33,7 +33,6 @@ public class ReappearingBricksManager : MonoBehaviour
 
 
         CreateFallingPlatform(new Vector2(71.46f, 5.29f), platform.transform.rotation);
-        CreateFallingPlatform(new Vector2(73.22f, 7.4f), platform.transform.rotation);
         CreateFallingPlatform(new Vector2(71.9f, 7.84f), platform.transform.rotation);
         CreateFallingPlatform(new Vector2(75.87f, 6.08f), platform.transform.rotation);
         CreateFallingPlatform(new Vector2(81.13f, 6.08f), platform.transform.rotation);
