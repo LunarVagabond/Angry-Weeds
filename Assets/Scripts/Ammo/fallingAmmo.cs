@@ -5,7 +5,7 @@ using UnityEngine;
 public class fallingAmmo : MonoBehaviour
 {
     private float fallDelay = 1f;
-    [SerializeField] private float destroyDelay =  30f; // again used for scene cleanup later
+    [SerializeField] private float destroyDelay =  15f; // again used for scene cleanup later
 
     [SerializeField] private Rigidbody2D ammo;
 
