@@ -14,6 +14,7 @@ TagManager:
   - Projectile
   - Bat
   - MonsterSpawner
+  - World
   layers:
   - Default
   - TransparentFX
