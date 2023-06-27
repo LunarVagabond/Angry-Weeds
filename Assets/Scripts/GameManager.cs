@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour
     public delegate void WaveIncrementEventHandler();
     public static event WaveIncrementEventHandler WaveUpEvent;
     public int CurrentWave;
-    
+
+    public delegate void VictoryAnimationEventHandler();
+    public static event VictoryAnimationEventHandler WinEvent;
+
     [SerializeField] public int maxWaves = 4;
     private int victoryWaitSeconds = 10;
 
@@ -80,11 +83,15 @@ public class GameManager : MonoBehaviour
     {
         victoryText = GameObject.FindGameObjectWithTag("Victory");
         Time.timeScale = 0f; // Stops everything from moving on the screen
-        // Call a player animation here within the player script use GameManager.WakeUpEvent.
+        
+        // Call a player animation here within the player script use GameManager Event
+        //GameManager.WinEvent?.Invoke();
+        
         // Display Some text on the screen 
-        victoryText.GetComponent<TextMeshProUGUI>().SetText("VICTORY!!! You have defended the Garden!");
-        //victoryText.SetText("VICTORY!!! You have defended the Garden!");
-        yield return new WaitForSecondsRealtime(victoryWaitSeconds);
+        victoryText.GetComponent<TextMeshProUGUI>().SetText("VICTORY!!!\nYou have defended the Garden!\n" +
+            "Press Enter to Return to main menu.");
+       
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return)); //WaitForSecondsRealtime(victoryWaitSeconds);
         Time.timeScale = 1f;
         victoryText.GetComponent<TextMeshProUGUI>().SetText("");
         GameOver(); // here need to return user to main screen
