@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Unity.VisualScripting.FullSerializer;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,10 +14,18 @@ public class GameManager : MonoBehaviour
     public delegate void WaveIncrementEventHandler();
     public static event WaveIncrementEventHandler WaveUpEvent;
     public int CurrentWave;
+
+    public delegate void VictoryAnimationEventHandler();
+    public static event VictoryAnimationEventHandler WinEvent;
+
+    [SerializeField] public int maxWaves = 4;
+    private int victoryWaitSeconds = 10;
+
     private bool paused = false;
 
-    [SerializeField]
-    private GameObject[] characters;
+    [SerializeField] private GameObject[] characters;
+
+    public GameObject victoryText;
 
     // Can either be 0 which is Player 1 or a 1 which is Player 2 
     private int _characterIndex;
@@ -34,12 +43,6 @@ public class GameManager : MonoBehaviour
     public bool isPaused {
         get { return paused; }
         set { paused = value; }
-    }
-
-
-    public void UpWave() {
-        CurrentWave++;
-        WaveUpEvent?.Invoke(); 
     }
 
     // If the static GameManger 'instance' is equal to nothing then it will
@@ -62,6 +65,38 @@ public class GameManager : MonoBehaviour
             // Destroy the duplicate instance 
         }
     }
+
+    public void UpWave()
+    {
+        CurrentWave++;
+
+        // VPC 6/27 - call a number of functions when the player has defeated the game 
+        // Use a coroutine to do a 5 Second wait to display some test and a victory animation
+        if (CurrentWave > maxWaves)
+        {
+            StartCoroutine(VictorySequence());
+        }
+        WaveUpEvent?.Invoke();
+    }
+
+    IEnumerator VictorySequence()
+    {
+        victoryText = GameObject.FindGameObjectWithTag("Victory");
+        Time.timeScale = 0f; // Stops everything from moving on the screen
+        
+        // Call a player animation here within the player script use GameManager Event
+        //GameManager.WinEvent?.Invoke();
+        
+        // Display Some text on the screen 
+        victoryText.GetComponent<TextMeshProUGUI>().SetText("VICTORY!!!\nYou have defended the Garden!\n" +
+            "Press Enter to Return to main menu.");
+       
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return)); //WaitForSecondsRealtime(victoryWaitSeconds);
+        Time.timeScale = 1f;
+        victoryText.GetComponent<TextMeshProUGUI>().SetText("");
+        GameOver(); // here need to return user to main screen
+    }
+
 
     //GameManger is subscribing to listen to when a scene is changed 
     private void OnEnable()

@@ -39,7 +39,8 @@ public class Player : MonoBehaviour
     private string WALK_ANIMATION = "Walk"; 
     private string JUMP_ANIMATION = "isJumping"; 
     private string GUN_ANIMATION = "hasPGun";
-    private string SHOOT_ANIMATION = "shootGun";
+    private string SHOOT_ANIMATION = "shootGun"; 
+    private string DANCE_ANIMATION = "victory";
 
     public Transform groundCheck;
     public float groundCheckRadius = 0f;
@@ -88,6 +89,11 @@ public class Player : MonoBehaviour
         SpriteMuzzleFlash = PlayerSprites[2];
     }
 
+    private void Start()
+    {
+        GameManager.WinEvent += WinDance;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -101,6 +107,11 @@ public class Player : MonoBehaviour
         
     }
 
+    // VPC 6/27 - Sets character to a dance animation when they acheieve victory
+    void WinDance()
+    {
+        anim.SetBool(DANCE_ANIMATION, true);
+    }
 
     private void PlayerMoveKeyBoard()
     {
