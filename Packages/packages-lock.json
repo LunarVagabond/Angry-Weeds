@@ -205,15 +205,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.services.core": {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      "version": "1.10.1",
-=======
       "version": "1.8.2",
->>>>>>> Stashed changes
-=======
-      "version": "1.8.2",
->>>>>>> Stashed changes
       "depth": 2,
       "source": "registry",
       "dependencies": {
