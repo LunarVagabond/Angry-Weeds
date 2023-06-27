@@ -68,11 +68,6 @@ public class Player : MonoBehaviour
 
     // ******* Global Variables *******
     #endregion
-
-    void Start() {
-        GameManager.instance.isPaused = false;
-    }
-
     private void Awake()
     {
 

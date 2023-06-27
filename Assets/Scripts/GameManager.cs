@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
+        GameManager.instance.isPaused = false;
         SceneManager.LoadScene("MainMenu");
     }
 
