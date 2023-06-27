@@ -931,7 +931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: maxSpawnTime
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: minSpawnTime
@@ -1235,7 +1235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: maxSpawnTime
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: minSpawnTime
@@ -1624,8 +1624,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121090388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -32.4489, y: -5.695, z: 0}
-  m_LocalScale: {x: 1.112105, y: 0.9454294, z: 1}
+  m_LocalPosition: {x: -32.1989, y: -5.695, z: 0}
+  m_LocalScale: {x: 1.2222034, y: 0.9454294, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 985208637}
@@ -2489,7 +2489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: maxSpawnTime
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: minSpawnTime
@@ -3428,7 +3428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.418
+  m_LookaheadTime: 0.606
   m_LookaheadSmoothing: 5
   m_LookaheadIgnoreY: 1
   m_XDamping: 1
@@ -6817,7 +6817,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0.000030517578}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9169,7 +9169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: maxSpawnTime
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: minSpawnTime
@@ -10008,8 +10008,8 @@ MonoBehaviour:
   - {fileID: 4789565998399729135, guid: b54cb3b3d365a2a4b97286822bbefd97, type: 3}
   - {fileID: 3744331417070929950, guid: d1f3735b9a58957419dc9af03fdedcc6, type: 3}
   waveText: {fileID: 1163192810}
-  baseEnemiesPerWave: 2
-  scalingFactor: 1
+  baseEnemiesPerWave: 1
+  scalingFactor: 1.5
   totalMonstersText: {fileID: 1106319498}
   bottomLeftPos: {fileID: 1791701158}
   bottomRightPos: {fileID: 206489468}
@@ -13673,7 +13673,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: maxSpawnTime
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2429109204697284417, guid: 884c2f4355a4d194183b37243d75e026, type: 3}
       propertyPath: minSpawnTime
@@ -20034,7 +20034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1311783256297138409, guid: c6595ee5074fa1c41ae75e4f6a5a6f0c, type: 3}
       propertyPath: MaxSpawns
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1311783256297138409, guid: c6595ee5074fa1c41ae75e4f6a5a6f0c, type: 3}
       propertyPath: monsterPrefabs.Array.size

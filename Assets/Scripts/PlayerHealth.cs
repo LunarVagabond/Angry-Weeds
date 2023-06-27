@@ -1,24 +1,27 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
+
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+
+    
     private bool isInvulnerable = false;
     private string MONSTER_TAG = "Enemy";
     [SerializeField] private AudioSource damageTakenSFX;
     [SerializeField] private AudioSource playerDeathSFX;
 
-    public int health;
-    public int maxHealth = 3;
+    public static int health;
+    public static int maxHealth = 3;
 
     public float invulnerabilityDuration = 1.5f;
     public Text livesText;
     // Start is called before the first frame update
     void Start()
     {
+
+     
         health = maxHealth;
         livesText = GameObject.FindWithTag("LifeText").GetComponent<Text>();
         livesText.text = "Lives: " + maxHealth.ToString();
@@ -86,4 +89,6 @@ public class PlayerHealth : MonoBehaviour
       
 
     }
+
+   
 }
