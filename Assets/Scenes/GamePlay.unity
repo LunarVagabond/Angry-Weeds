@@ -9607,14 +9607,9 @@ MonoBehaviour:
   bottomRightPos: {fileID: 206489468}
   middlePos:
   - {fileID: 673718244}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 1632657458}
   - {fileID: 1606136746}
-  - {fileID: 0}
   - {fileID: 2077146341}
-  - {fileID: 0}
   spawnedEnemies: []
   monstersLeftTracker: 0
   numOfMonsters: {fileID: 381675423}
@@ -25482,7 +25477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1606136746}
   m_Layer: 0
-  m_Name: Middle Pos. 6
+  m_Name: Middle Pos. 3
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -26137,7 +26132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1632657458}
   m_Layer: 0
-  m_Name: Middle Pos. 5
+  m_Name: Middle Pos. 2
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -32958,7 +32953,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2077146341}
   m_Layer: 0
-  m_Name: Middle Pos. 8
+  m_Name: Middle Pos. 4
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

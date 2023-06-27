@@ -425,6 +425,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   ammoCount: 0
+  maxAmmo: 10
   potatoAmmoText: {fileID: 0}
   hasPGUN: 0
   Projectiles:
