@@ -45,7 +45,7 @@ public class Monster : MonoBehaviour
 
     IEnumerator MonsterJump()
     {
-        Debug.Log($"{objName} jump chance {jumpPercentage}");
+        // Debug.Log($"{objName} jump chance {jumpPercentage}");
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(2, 21));

@@ -30,12 +30,9 @@ public class MonsterSpawner : MonoBehaviour
     private float y_scale = 0.0f;
     private float z_scale = 0.0f;
 
-    private int batMax = 0;
-    private float totalBatsSpawn;
-
     [SerializeField]
     public Text numOfMonsters;
-    
+
     [SerializeField] public Text playerScoreText;
     public int playerScore = 0;
 
@@ -48,10 +45,10 @@ public class MonsterSpawner : MonoBehaviour
         StopCoroutine(SpawnMonsters());
     }
 
-    void Awake()
-    {
-        totalBatsSpawn = (Mathf.RoundToInt((baseEnemiesPerWave / 3) * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1)));
-    }
+    // void Awake()
+    // {
+    //     totalBatsSpawn = (Mathf.RoundToInt((baseEnemiesPerWave / 3) * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1)));
+    // }
 
     IEnumerator SpawnMonsters()
     {
@@ -64,7 +61,7 @@ public class MonsterSpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(2, 8));
             // Wait between a range of 1 and 5 seconds 
-            int maxRange = batMax >= totalBatsSpawn ? monsterReference.Length - 1 : monsterReference.Length;
+            int maxRange = monsterReference.Length - 1;
             randomEnemy = Random.Range(0, maxRange);
             if (randomEnemy == 2) i--; // spawned a bat don't count against the iterations 
 
@@ -87,10 +84,7 @@ public class MonsterSpawner : MonoBehaviour
                                                                     // Check if we spawned a bat, bats do not count as enemies that must be killed
                                                                     // So we don't add this to the list 
 
-            if (spawnedMonster.tag == "Bat")
-                batMax++; // Keep track of bats added for the bottom two platforms
-            else
-                spawnedEnemies.Add(spawnedMonster); // Enemies added to the list, except for bats 
+            spawnedEnemies.Add(spawnedMonster); // Enemies added to the list, except for bats 
 
             spawnedMonster.transform.parent = gameObject.transform; // dump spawned monsters under the spawner
 
@@ -118,29 +112,17 @@ public class MonsterSpawner : MonoBehaviour
                 // So whatever Monster spawns it will have a random speed between
                 // 4 and 10.
 
-                if (randomEnemy == 2)
-                {
-                    x_scale *= -1;
-                    spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
-                }
             }
             else if (randomSpawn == 1) // RIGHT BOTTOM - If randomSpawn is 1 we spawn on the bottom right side of platform 1 
             {
 
 
                 spawnedMonster.transform.position = bottomRightPos.position; // Spawns in the bottom right
-
+                spawnedMonster.transform.localScale = new Vector2(spawnedMonster.transform.localScale.x * -1, spawnedMonster.transform.localScale.y);
 
                 spawnedMonster.GetComponent<Monster>().speed = -Random.Range(3, 10);
                 // We spawn a random negative number between -4 and -10 so the enemy from
                 // the right will travel to the left side of the screen.
-
-                if (randomEnemy != 2)
-                {
-                    x_scale *= -1;
-                    spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
-                    // Flip the enemy to face the left direction
-                }
             }
             else if (randomSpawn == 2 || randomSpawn == 3)// MIDDLE - This means we spawned a middle position / Try to even out the likelihood
             {
@@ -173,12 +155,6 @@ public class MonsterSpawner : MonoBehaviour
                 // Red Monster and Green Monster. So Monster is the parent.
                 // So whatever Monster spawns it will have a random speed between
                 // 4 and 10.
-
-                if (randomEnemy == 2)
-                {
-                    x_scale *= -1;
-                    spawnedMonster.transform.localScale = new Vector3(x_scale, y_scale, z_scale);
-                }
 
             }
         } // End of While Loop
