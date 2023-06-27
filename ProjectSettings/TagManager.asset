@@ -15,6 +15,7 @@ TagManager:
   - Bat
   - MonsterSpawner
   - World
+  - Victory
   layers:
   - Default
   - TransparentFX
