@@ -10,8 +10,8 @@ public class MonsterSpawner : MonoBehaviour
     private GameObject[] monsterReference;
     [SerializeField] Text waveText;
 
-    [SerializeField] private int baseEnemiesPerWave = 15;
-    public float scalingFactor = 1.2f;
+    [SerializeField] private int baseEnemiesPerWave = 5; //15;
+    public float scalingFactor = 1.0f; // 1.2f;
     [SerializeField] private Text totalMonstersText;
 
     [SerializeField]
