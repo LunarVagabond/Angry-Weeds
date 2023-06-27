@@ -95,10 +95,14 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMoveKeyBoard();
-        animatePlayer();
-        PlayerJump();
-        PlayerShoot();
+        if (!GameManager.instance.isPaused)
+        {
+            PlayerMoveKeyBoard();
+            animatePlayer();
+            PlayerJump();
+            PlayerShoot();
+        }
+        
     }
 
 

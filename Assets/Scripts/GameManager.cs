@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public delegate void WaveIncrementEventHandler();
     public static event WaveIncrementEventHandler WaveUpEvent;
     public int CurrentWave;
+    private bool paused = false;
 
     [SerializeField]
     private GameObject[] characters;
@@ -29,6 +30,12 @@ public class GameManager : MonoBehaviour
         get { return _characterIndex; }
         set { _characterIndex = value; }
     }
+
+    public bool isPaused {
+        get { return paused; }
+        set { paused = value; }
+    }
+
 
     public void UpWave() {
         CurrentWave++;
@@ -104,4 +111,6 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene("MainMenu");
     }
+
+   
 } // Class 

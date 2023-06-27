@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -48,12 +49,17 @@ public class PlayerHealth : MonoBehaviour
             }
             isInvulnerable = true;
 
+          
+
             if (health <= 0)
             {
+                playerDeathSFX.Play();
+                GameManager.instance.isPaused = true;
+                StartCoroutine(gameOver());
+
+
                 // TODO: Add a death sound here once we figure out how to destroy character
                 // Currently the character can't be deleted due to special prefab clone properties (I think)
-                playerDeathSFX.Play();
-                FindObjectOfType<GameManager>().GameOver();
             }
             else
             {
@@ -71,5 +77,13 @@ public class PlayerHealth : MonoBehaviour
 
         // Invulnerability period has ended
         isInvulnerable = false;
+    }
+
+    IEnumerator gameOver()
+    {
+        yield return new WaitForSeconds(playerDeathSFX.clip.length);
+        FindObjectOfType<GameManager>().GameOver();
+      
+
     }
 }
