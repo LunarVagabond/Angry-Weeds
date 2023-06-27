@@ -161,21 +161,6 @@ public class MonsterSpawner : MonoBehaviour
                     case 3:
                         spawnedMonster.transform.position = middlePos[3].position;
                         break;
-                    case 4:
-                        spawnedMonster.transform.position = middlePos[4].position;
-                        break;
-                    case 5:
-                        spawnedMonster.transform.position = middlePos[5].position;
-                        break;
-                    case 6:
-                        spawnedMonster.transform.position = middlePos[6].position;
-                        break;
-                    case 7:
-                        spawnedMonster.transform.position = middlePos[7].position;
-                        break;
-                    case 8:
-                        spawnedMonster.transform.position = middlePos[8].position;
-                        break;
                     default:
                         break;
 

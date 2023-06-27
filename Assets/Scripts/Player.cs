@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     private const float leftSideOfScreen  = -98.47478f;
     
     public int ammoCount = 0;
+    [SerializeField] private int maxAmmo = 10;
     [SerializeField] private Text potatoAmmoText;
 
     private Vector2 rightFaceGun = new Vector2(0.25f, 0.11f),
@@ -78,7 +79,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         spriteR = GetComponent<SpriteRenderer>();
         potatoAmmoText = GameObject.FindWithTag("PotatoAmmoText").GetComponent<Text>();
-        potatoAmmoText.text = "Poatao's: " + ammoCount;
+        potatoAmmoText.text = $"Poatao's: {ammoCount} / {maxAmmo}";
 
         //VPC 6/19 - puts all sprite renderers in game object and children, even if inactive (which the gun is to start)
         // and puts into an array
@@ -232,8 +233,9 @@ public class Player : MonoBehaviour
         {
             pickUpSFX.Play();
             Destroy(collision.gameObject);
+            if (ammoCount + 1 > maxAmmo) return; 
             ammoCount += Random.Range(1, 2); // may change some day later so not hard coded to 1
-            potatoAmmoText.text = "Poatao's: " + ammoCount;
+            potatoAmmoText.text = $"Poatao's: {ammoCount} / {maxAmmo}";
         }
         //Collision to "pick up" the potato gun
         if (collision.gameObject.tag == "PotatoGun") {
@@ -258,7 +260,7 @@ public class Player : MonoBehaviour
             anim.SetBool(SHOOT_ANIMATION, true);
             StartCoroutine(shootTimer());
             ShootSFX.Play();
-            potatoAmmoText.text = "Poatao's: " + ammoCount;
+            potatoAmmoText.text = $"Poatao's: {ammoCount} / {maxAmmo}";
             
             // VPC 6/21 - creating a projectile and imparting force on it depending on the direction player is facing 
             GameObject potShot;

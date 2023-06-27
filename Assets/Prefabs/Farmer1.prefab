@@ -248,6 +248,8 @@ MonoBehaviour:
   landingSFX: {fileID: -2128930963831378141}
   runningSFX: {fileID: -5614123149245746878}
   ShootSFX: {fileID: 5858380878898757065}
+  pickUpSFX: {fileID: 4552732251039233135}
+  movementX: 0
   myBody: {fileID: 0}
   PlayerSprites: []
   groundCheck: {fileID: 5436165160602912511}
@@ -255,12 +257,13 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
-  pickUpSFX: {fileID: 4552732251039233135}
   ammoCount: 0
+  maxAmmo: 10
   potatoAmmoText: {fileID: 0}
   hasPGUN: 0
   Projectiles:
   - {fileID: 1739912314899262264, guid: 314edf1bc388a334abbb0cf882532a39, type: 3}
+  playerFaceDirection: 0
 --- !u!114 &2976895224233476488
 MonoBehaviour:
   m_ObjectHideFlags: 0
