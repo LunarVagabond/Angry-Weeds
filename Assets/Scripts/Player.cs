@@ -299,7 +299,7 @@ public class Player : MonoBehaviour
 
     IEnumerator shootTimer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         anim.SetBool(SHOOT_ANIMATION, false);
         shootEnabled = true;
     }

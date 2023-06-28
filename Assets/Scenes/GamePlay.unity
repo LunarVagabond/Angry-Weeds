@@ -10058,8 +10058,7 @@ MonoBehaviour:
   - {fileID: 4789565998399729135, guid: b54cb3b3d365a2a4b97286822bbefd97, type: 3}
   - {fileID: 3744331417070929950, guid: d1f3735b9a58957419dc9af03fdedcc6, type: 3}
   waveText: {fileID: 1163192810}
-  baseEnemiesPerWave: 1
-  scalingFactor: 1.5
+  baseEnemiesPerWave: 5
   totalMonstersText: {fileID: 1106319498}
   bottomLeftPos: {fileID: 1791701158}
   bottomRightPos: {fileID: 206489468}
@@ -20084,7 +20083,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1311783256297138409, guid: c6595ee5074fa1c41ae75e4f6a5a6f0c, type: 3}
       propertyPath: MaxSpawns
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1311783256297138409, guid: c6595ee5074fa1c41ae75e4f6a5a6f0c, type: 3}
       propertyPath: monsterPrefabs.Array.size
