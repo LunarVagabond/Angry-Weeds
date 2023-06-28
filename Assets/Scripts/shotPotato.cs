@@ -9,7 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 public class shotPotato : MonoBehaviour
 {
     Player player;
-    Camera camera;
+    Camera cam;
     private int shotDirection; // 1 for to the right, -1 for to the left
     private float potatoShotForce = 20.0f;
     public int enemiesKilled = 0;
@@ -17,7 +17,7 @@ public class shotPotato : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         //need to determine if this potato is going to the right or left
         shotDirection = player.playerFaceDirection;
     }
@@ -61,7 +61,7 @@ public class shotPotato : MonoBehaviour
     // VPC 6/27 - this checks if a fired potato reaches the edge of the camera and destroys it if so
     void checkBoundaries()
     {
-        cameraPos = camera.cameraToWorldMatrix;
+        cameraPos = cam.cameraToWorldMatrix;
         //Debug.Log("Camera transform matrix = " + cameraPos.ToString());
 
         float checkval = cameraPos.GetRow(0).w; //VPC 6/27 - not sure why the x value is stored as
@@ -82,12 +82,13 @@ public class shotPotato : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bat")
         {
-            Destroy(collision.gameObject); // Kill all enemies including bats 
-            Destroy(this.gameObject);
             // FIXME: this is not the best way to do this 
             MonsterSpawner ms = collision.gameObject.GetComponentInParent<MonsterSpawner>();
             ms.spawnedEnemies.Remove(collision.gameObject);
             MonsterDecrementEvent?.Invoke(collision.gameObject.tag);
+            Destroy(collision.gameObject); // Kill all enemies including bats 
+            Destroy(this.gameObject);
+
         }
     }
 

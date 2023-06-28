@@ -70,18 +70,6 @@
         "com.unity.modules.uielements": "1.0.0"
       }
     },
-    "com.unity.2d.tilemap.extras": {
-      "version": "3.1.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.tilemap": "1.0.0",
-        "com.unity.2d.tilemap": "1.0.0",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.ads": {
       "version": "4.4.2",
       "depth": 0,
@@ -111,7 +99,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.4",
+      "version": "1.8.7",
       "depth": 2,
       "source": "registry",
       "dependencies": {

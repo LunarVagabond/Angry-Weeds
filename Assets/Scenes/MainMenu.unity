@@ -1075,8 +1075,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d521ca4f1e1f6435fb73975a1a109d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  livesText: {fileID: 0}
   CurrentWave: 0
-  maxWaves: 1
+  maxWaves: 3
   characters:
   - {fileID: 997516390815729575, guid: fea1a3bcd720ef342b95f09aa122bf00, type: 3}
   - {fileID: 8228608634685545678, guid: a63be433827410f49afbf14b32200b5f, type: 3}

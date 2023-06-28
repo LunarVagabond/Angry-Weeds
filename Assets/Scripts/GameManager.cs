@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 using Unity.VisualScripting.FullSerializer;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+
+
+
     public static GameManager instance;
+    public Text livesText;
     // A static instance of itself inside the Game Manager
     private string GAME_PLAY = "GamePlay";
 
@@ -18,13 +23,14 @@ public class GameManager : MonoBehaviour
     public delegate void VictoryAnimationEventHandler();
     public static event VictoryAnimationEventHandler WinEvent;
 
-    [SerializeField] public int maxWaves = 4;
+    [SerializeField] public int maxWaves = 2;
     private int victoryWaitSeconds = 10;
 
     private bool paused = false;
 
     [SerializeField] private GameObject[] characters;
 
+    
     public GameObject victoryText;
 
     // Can either be 0 which is Player 1 or a 1 which is Player 2 
@@ -50,6 +56,9 @@ public class GameManager : MonoBehaviour
     // Awake() is pretty much the constructor for GameManager
     private void Awake()
     {
+
+       
+
         CurrentWave = 1;
         if (instance == null)
         {
@@ -70,11 +79,17 @@ public class GameManager : MonoBehaviour
     {
         CurrentWave++;
 
+
+
         // VPC 6/27 - call a number of functions when the player has defeated the game 
         // Use a coroutine to do a 5 Second wait to display some test and a victory animation
         if (CurrentWave > maxWaves)
         {
             StartCoroutine(VictorySequence());
+        }
+        else
+        {
+            StartCoroutine(waveCompletion());
         }
         WaveUpEvent?.Invoke();
     }
@@ -90,14 +105,43 @@ public class GameManager : MonoBehaviour
         // Display Some text on the screen 
         victoryText.GetComponent<TextMeshProUGUI>().SetText("VICTORY!!!\nYou have defended the Garden!\n" +
             "Press Enter to Return to main menu.");
+
+        isPaused = true; // Pauses gameplay movements 
        
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return)); //WaitForSecondsRealtime(victoryWaitSeconds);
         Time.timeScale = 1f;
         victoryText.GetComponent<TextMeshProUGUI>().SetText("");
+
+        isPaused = false;
         GameOver(); // here need to return user to main screen
     }
 
+    IEnumerator waveCompletion()
+    {
+        victoryText = GameObject.FindGameObjectWithTag("Victory");
+        Time.timeScale = 0f; // Stop everyting from moving on screen
 
+        // Display Some text on the screen 
+        victoryText.GetComponent<TextMeshProUGUI>().SetText("You have completed wave " + (CurrentWave-1) + "!\n" +
+            "Press Enter to continue the fight!!!");
+
+        isPaused = true; // Pauses gameplay movements 
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return)); //WaitForSecondsRealtime(victoryWaitSeconds);
+
+        Time.timeScale = 1f;
+        victoryText.GetComponent<TextMeshProUGUI>().SetText("");
+
+        // Update the players health back to the maxHealth 
+        PlayerHealth.health = PlayerHealth.maxHealth;
+
+        livesText = GameObject.FindWithTag("LifeText").GetComponent<Text>();
+        livesText.text = "Lives: " + PlayerHealth.health.ToString();
+
+        
+
+        isPaused = false;
+    }
     //GameManger is subscribing to listen to when a scene is changed 
     private void OnEnable()
     {
