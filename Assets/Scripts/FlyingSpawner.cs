@@ -7,12 +7,14 @@ public class FlyingSpawner : MonoBehaviour
     [SerializeField] int MaxSpawns;
     [SerializeField] Transform[] spawnLocations;
     [SerializeField] GameObject[] monsterPrefabs;
+    private float scalingFactor = 1.2f;
     int currentCount {get; set;}
     // Start is called before the first frame update
     void Awake()
     {
         shotPotato.MonsterDecrementEvent += DecrementCurrentCount;
         StartCoroutine(SpawnMonsters());
+        MaxSpawns = Mathf.RoundToInt(MaxSpawns * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1));
     }
 
     void OnDestroy() {
