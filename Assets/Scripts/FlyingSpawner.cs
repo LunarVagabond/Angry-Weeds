@@ -14,7 +14,8 @@ public class FlyingSpawner : MonoBehaviour
     {
         shotPotato.MonsterDecrementEvent += DecrementCurrentCount;
         StartCoroutine(SpawnMonsters());
-        MaxSpawns = Mathf.RoundToInt(MaxSpawns * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1));
+        if(MaxSpawns <= 12)
+            MaxSpawns = Mathf.RoundToInt(MaxSpawns * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1));
     }
 
     void OnDestroy() {
