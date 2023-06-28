@@ -15,11 +15,11 @@ public class TimerSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        StartCoroutine(AmmoDrop());
+        StartCoroutine(clockDrop());
 
     }
 
-    IEnumerator AmmoDrop()
+    IEnumerator clockDrop()
     {
         while (true)
         {
