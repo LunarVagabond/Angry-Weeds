@@ -8,22 +8,22 @@ public class Timer : MonoBehaviour
 
     private float timeDuration = 5f * 60; // 3 Seconds but we make it display in seconds
 
-    private float timer; // Keeps track of the time
+    private static float timer; // Keeps track of the time
 
     private float flashDuration = 1f;
 
     private float flashTimer;
 
     [SerializeField]
-    private TextMeshProUGUI firstMinute;
+    private  TextMeshProUGUI firstMinute;
     [SerializeField]
-    private TextMeshProUGUI secondMinute;
+    private   TextMeshProUGUI secondMinute;
     [SerializeField]
-    private TextMeshProUGUI seperator;
+    private  TextMeshProUGUI seperator;
     [SerializeField]
     private TextMeshProUGUI firstSecond;
     [SerializeField]
-    private TextMeshProUGUI secondSecond;
+    private   TextMeshProUGUI secondSecond;
 
 
     // Start is called before the first frame update
@@ -52,7 +52,14 @@ public class Timer : MonoBehaviour
         timer = timeDuration;
     }
 
-    private void UpdateTimerDisplay(float time)
+    public static void customizeTimer(float addedDuration)
+    {
+        timer += addedDuration; // Add 30 seconds to the timer
+       
+
+    }
+
+    private  void UpdateTimerDisplay(float time)
     {
         float minutes = Mathf.FloorToInt(time / 60); // Retrieve the minutes 
         float seconds = Mathf.FloorToInt(time % 60); // Get what is left over which will be the seconds
