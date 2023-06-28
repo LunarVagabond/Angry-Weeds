@@ -82,12 +82,13 @@ public class shotPotato : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bat")
         {
-            Destroy(collision.gameObject); // Kill all enemies including bats 
-            Destroy(this.gameObject);
             // FIXME: this is not the best way to do this 
             MonsterSpawner ms = collision.gameObject.GetComponentInParent<MonsterSpawner>();
             ms.spawnedEnemies.Remove(collision.gameObject);
             MonsterDecrementEvent?.Invoke(collision.gameObject.tag);
+            Destroy(collision.gameObject); // Kill all enemies including bats 
+            Destroy(this.gameObject);
+
         }
     }
 
