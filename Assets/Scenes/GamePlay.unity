@@ -9184,8 +9184,8 @@ MonoBehaviour:
   minX: -90
   maxX: 90
   yPos: 20
-  minSpawnTime: 45
-  maxSpawnTime: 150
+  minSpawnTime: 10
+  maxSpawnTime: 10
 --- !u!4 &529942414
 Transform:
   m_ObjectHideFlags: 0
