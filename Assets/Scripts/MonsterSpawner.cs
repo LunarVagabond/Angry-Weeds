@@ -41,7 +41,6 @@ public class MonsterSpawner : MonoBehaviour
         waveText.text = "Wave: 1";
         shotPotato.MonsterDecrementEvent += DecrementMonsterTracker;
         StartCoroutine(SpawnMonsters());
-        StopCoroutine(SpawnMonsters());
     }
 
     IEnumerator SpawnMonsters()
@@ -166,10 +165,12 @@ public class MonsterSpawner : MonoBehaviour
 
     }
 
-    void DecrementMonsterTracker(string tag)
+    void DecrementMonsterTracker(GameObject go)
     {
-        if (tag != "Bat")
+        if (!go.CompareTag("Bat"))
         {
+            spawnedEnemies.Remove(go);
+            Destroy(go);
             monstersLeftTracker--;
             UpdateRemainingMonsterText();
 
