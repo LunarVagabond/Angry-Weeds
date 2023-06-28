@@ -41,6 +41,7 @@ public class Timer : MonoBehaviour
             timer -= Time.deltaTime; // Every frame or update we substract the time that has lapsed
             UpdateTimerDisplay(timer); // Displays updated time
         }
+        else if(timer <= 0) GameManager.instance.GameOver();
         else
         {
             Flash();
