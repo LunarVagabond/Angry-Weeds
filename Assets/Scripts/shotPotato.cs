@@ -8,6 +8,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class shotPotato : MonoBehaviour
 {
+
+
     Player player;
     Camera cam;
     private int shotDirection; // 1 for to the right, -1 for to the left
@@ -84,10 +86,19 @@ public class shotPotato : MonoBehaviour
         {
             // FIXME: this is not the best way to do this 
             MonsterSpawner ms = collision.gameObject.GetComponentInParent<MonsterSpawner>();
+
+            Monster monster = collision.gameObject.GetComponent<Monster>();
+            monster.playDeathSound(collision.transform.position);
+
+
+
             ms.spawnedEnemies.Remove(collision.gameObject);
             MonsterDecrementEvent?.Invoke(collision.gameObject.tag);
+
+
             Destroy(collision.gameObject); // Kill all enemies including bats 
             Destroy(this.gameObject);
+
 
         }
     }

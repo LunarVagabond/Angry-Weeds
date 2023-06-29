@@ -445,8 +445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageTakenSFX: {fileID: -1187194059034790691}
   playerDeathSFX: {fileID: 3184092654962970098}
-  health: 0
-  maxHealth: 3
   invulnerabilityDuration: 1.5
   livesText: {fileID: 0}
 --- !u!82 &-1187194059034790691
@@ -1037,7 +1035,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1df1429981f76644097c7fd47fc5f239, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.29
   m_Pitch: 1
   Loop: 0
   Mute: 0
