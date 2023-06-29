@@ -13,15 +13,13 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private AudioSource playerDeathSFX;
 
     public static int health;
-    public static int maxHealth = 3;
+    public static int maxHealth = 5;
 
     public float invulnerabilityDuration = 1.5f;
     public Text livesText;
     // Start is called before the first frame update
     void Start()
     {
-
-     
         health = maxHealth;
         livesText = GameObject.FindWithTag("LifeText").GetComponent<Text>();
         livesText.text = "Lives: " + maxHealth.ToString();

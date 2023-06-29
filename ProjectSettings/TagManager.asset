@@ -16,6 +16,7 @@ TagManager:
   - MonsterSpawner
   - World
   - Victory
+  - Timer
   layers:
   - Default
   - TransparentFX

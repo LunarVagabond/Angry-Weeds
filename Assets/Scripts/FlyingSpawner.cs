@@ -7,11 +7,18 @@ public class FlyingSpawner : MonoBehaviour
     [SerializeField] int MaxSpawns;
     [SerializeField] Transform[] spawnLocations;
     [SerializeField] GameObject[] monsterPrefabs;
-    int currentCount {get; set;}
+    private List<GameObject> spawnedMonsters = new List<GameObject>();
+    int maxAllowedSpawnCount {get; set;}
     // Start is called before the first frame update
     void Awake()
     {
         shotPotato.MonsterDecrementEvent += DecrementCurrentCount;
+        GameManager.WaveUpEvent += ResetSpawns;
+        StartCoroutine(SpawnMonsters());
+    }
+    
+    void ResetSpawns() {
+        StopCoroutine(SpawnMonsters());
         StartCoroutine(SpawnMonsters());
     }
 
@@ -19,27 +26,27 @@ public class FlyingSpawner : MonoBehaviour
         shotPotato.MonsterDecrementEvent -= DecrementCurrentCount;
     }
 
-    void DecrementCurrentCount(string tag) => currentCount--;
+    void DecrementCurrentCount(GameObject go) {
+        maxAllowedSpawnCount--;
+        Destroy(go);
+    } 
 
 
     IEnumerator SpawnMonsters()
     {
-        while (true)
+        maxAllowedSpawnCount = Mathf.RoundToInt(MaxSpawns + (GameManager.instance.CurrentWave - 1) * 1.2f);
+        while (spawnedMonsters.Count <= maxAllowedSpawnCount && spawnedMonsters.Count < 12)
         {
-            if (currentCount == MaxSpawns)
-            {
-                yield return new WaitForSeconds(Random.Range(2, 8));
-                continue;
-            }
+            Debug.Log($"{maxAllowedSpawnCount}");
             int mIndex = Random.Range(0, monsterPrefabs.Length);
             Transform spawnLocation = spawnLocations[Random.Range(0, spawnLocations.Length)];
             GameObject monster = Instantiate(monsterPrefabs[mIndex]);
-            monster.transform.name = $"Monster {currentCount}: {monster.name.Substring(0, monster.name.Length - 7)}";
+            monster.transform.name = $"Monster {maxAllowedSpawnCount}: {monster.name.Substring(0, monster.name.Length - 7)}";
             monster.gameObject.GetComponent<Monster>().mType = mIndex;
-            monster.gameObject.GetComponent<Monster>().objName = $"Monster {currentCount}: {monster.name.Substring(0, monster.name.Length - 7)}";
+            monster.gameObject.GetComponent<Monster>().objName = $"Monster {maxAllowedSpawnCount}: {monster.name.Substring(0, monster.name.Length - 7)}";
             monster.transform.parent = spawnLocation;
             SetGroundCheck(monster);
-            currentCount++;
+            spawnedMonsters.Add(monster);
             monster.transform.position = spawnLocation.position;
 
             // We are on the right side of map monster needs to go left

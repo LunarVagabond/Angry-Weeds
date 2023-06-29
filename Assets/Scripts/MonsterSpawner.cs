@@ -11,7 +11,6 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] Text waveText;
 
     [SerializeField] private int baseEnemiesPerWave = 15;
-    public float scalingFactor = 1.2f;
     [SerializeField] private Text totalMonstersText;
 
     [SerializeField]
@@ -42,17 +41,11 @@ public class MonsterSpawner : MonoBehaviour
         waveText.text = "Wave: 1";
         shotPotato.MonsterDecrementEvent += DecrementMonsterTracker;
         StartCoroutine(SpawnMonsters());
-        StopCoroutine(SpawnMonsters());
     }
-
-    // void Awake()
-    // {
-    //     totalBatsSpawn = (Mathf.RoundToInt((baseEnemiesPerWave / 3) * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1)));
-    // }
 
     IEnumerator SpawnMonsters()
     {
-        int numberOfEnemies = Mathf.RoundToInt(baseEnemiesPerWave * Mathf.Pow(scalingFactor, GameManager.instance.CurrentWave - 1));
+        int numberOfEnemies = Mathf.RoundToInt(baseEnemiesPerWave + ((GameManager.instance.CurrentWave - 1) * 2));
         monstersLeftTracker = numberOfEnemies;
         UpdateTotalMonsterText(numberOfEnemies);
         UpdateRemainingMonsterText();
@@ -77,7 +70,7 @@ public class MonsterSpawner : MonoBehaviour
             spawnedMonster.gameObject.GetComponent<Monster>().objName = $"Monster {i}: {spawnedMonster.name.Substring(0, spawnedMonster.name.Length - 7)}";
             spawnedMonster.gameObject.GetComponent<Monster>().groundLayer = LayerMask.GetMask("Ground");
             spawnedMonster.gameObject.GetComponent<Monster>().groundCheckRadius = 0.15f;
-            spawnedMonster.gameObject.GetComponent<Monster>().jumpPercentage = Random.Range(0, 41) / 100f; // set the jump rate to some random percentage (min = 0, max = 40)
+            spawnedMonster.gameObject.GetComponent<Monster>().jumpPercentage = Random.Range(20, 51) / 100f; // set the jump rate to some random percentage (min = 0, max = 40)
             spawnedEnemies.Add(spawnedMonster);
             // End my knowledge
             spawnedMonster.transform.parent = gameObject.transform; // dump spawned monsters under the spawner
@@ -172,10 +165,12 @@ public class MonsterSpawner : MonoBehaviour
 
     }
 
-    void DecrementMonsterTracker(string tag)
+    void DecrementMonsterTracker(GameObject go)
     {
-        if (tag != "Bat")
+        if (!go.CompareTag("Bat"))
         {
+            spawnedEnemies.Remove(go);
+            Destroy(go);
             monstersLeftTracker--;
             UpdateRemainingMonsterText();
 

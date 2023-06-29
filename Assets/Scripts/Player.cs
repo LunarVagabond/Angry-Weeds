@@ -248,6 +248,13 @@ public class Player : MonoBehaviour
             ammoCount += Random.Range(1, 2); // may change some day later so not hard coded to 1
             potatoAmmoText.text = $"Poatao's: {ammoCount} / {maxAmmo}";
         }
+
+        if(collision.gameObject.tag == "Timer")
+        {
+            pickUpSFX.Play();
+            Destroy(collision.gameObject);
+            Timer.customizeTimer(30f);
+        }
         //Collision to "pick up" the potato gun
         if (collision.gameObject.tag == "PotatoGun") {
             pickUpSFX.Play();
@@ -292,8 +299,10 @@ public class Player : MonoBehaviour
 
     IEnumerator shootTimer()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         anim.SetBool(SHOOT_ANIMATION, false);
         shootEnabled = true;
     }
+
+    
 }

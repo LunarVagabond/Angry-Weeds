@@ -24,7 +24,7 @@ public class shotPotato : MonoBehaviour
         shotDirection = player.playerFaceDirection;
     }
 
-    public delegate void DecrementMonsterEventHandler(string tag);
+    public delegate void DecrementMonsterEventHandler(GameObject tag);
     public static event DecrementMonsterEventHandler MonsterDecrementEvent;
 
     //These variables are used to detect screen edge in environment 
@@ -82,24 +82,14 @@ public class shotPotato : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Bat")
+        if (!collision.gameObject.CompareTag("Ground"))
         {
-            // FIXME: this is not the best way to do this 
-            MonsterSpawner ms = collision.gameObject.GetComponentInParent<MonsterSpawner>();
 
             Monster monster = collision.gameObject.GetComponent<Monster>();
             monster.playDeathSound(collision.transform.position);
 
-
-
-            ms.spawnedEnemies.Remove(collision.gameObject);
-            MonsterDecrementEvent?.Invoke(collision.gameObject.tag);
-
-
-            Destroy(collision.gameObject); // Kill all enemies including bats 
+            MonsterDecrementEvent?.Invoke(collision.gameObject);
             Destroy(this.gameObject);
-
-
         }
     }
 
