@@ -8,6 +8,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class shotPotato : MonoBehaviour
 {
+
+
     Player player;
     Camera cam;
     private int shotDirection; // 1 for to the right, -1 for to the left
@@ -82,6 +84,10 @@ public class shotPotato : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Ground"))
         {
+
+            Monster monster = collision.gameObject.GetComponent<Monster>();
+            monster.playDeathSound(collision.transform.position);
+
             MonsterDecrementEvent?.Invoke(collision.gameObject);
             Destroy(this.gameObject);
         }

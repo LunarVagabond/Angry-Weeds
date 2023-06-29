@@ -6,7 +6,12 @@ public class Monster : MonoBehaviour
 {
     public float speed;
     public float direction;
-    
+
+
+    [SerializeField]
+    private AudioSource enemyDeathSFX;
+
+
     private Rigidbody2D myBody;
     public int mType { get; set; }
     bool isGrounded;
@@ -36,6 +41,10 @@ public class Monster : MonoBehaviour
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
+    public void playDeathSound(Vector3 collision)
+    {
+        AudioSource.PlayClipAtPoint(enemyDeathSFX.clip, transform.position);
+    }
     private void FixedUpdate()
     {
         // We are changing the x velocity but the Y will be the same
