@@ -2,6 +2,8 @@
 
 Welcome to the Angry Weeds repository! This repository is dedicated to the development of a 2D platformer game built using Unity for CCSU-CS415. The current objective of the game is to slay a certain number of enemies to progress to the next level.
 
+![Angry Weeds Demo](./resources/GameplayTeaser.mp4)
+
 ## Table of Contents
 
 - [Game Overview](#game-overview)
